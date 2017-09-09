@@ -43,7 +43,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
           </div>
           <div class="row">
           <div class="col-md-12">
-        		<h2 class="sub-header">Comprehensive Visit report</h2>
+        		<h2 class="sub-header">Student List</h2>
         		
         		<table id="visit_lisr" class="table table-striped">
 		              <thead>
@@ -76,6 +76,8 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 						</tfoot>
 		              </tbody>
             	</table>
+            	
+            	<a class="btn btn-warning" href="create_student.php" role="button">Create Student</a>
         		</div>
           </div>
           
