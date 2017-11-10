@@ -8,7 +8,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 
     <div class="container-fluid">
       <div class="row">
-        <?php include './inc/dashboard_sidenav.php'; ?>
+        <?php include './inc/master_sidenav.php'; ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Scheme Management</h1>
 

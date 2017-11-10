@@ -5,23 +5,23 @@
 $(document).ready(function(){
 	
 	
-	  	$("#add_by_user").click(function(){
+	  	$("#add_by_session").click(function(){
 			  
 		    var url = "./ajax/add_user_record.php"; // the script where you handle the form input.
-		    if(empty($("#fname").val()) || empty($("#lname").val()) || empty($("#gender").val()) || empty($("#theDate").val()) ){
-		    	$("#search_alert_2").html("First Name, Last Name, Sex and DOB is mandatory");
+		    if(empty($("#fname").val())  || empty($("#theStartDate").val()) ){
+		    	$("#search_alert_2").html("Session Name, Start date is mandatory");
 		    	$("#search_alert_2").show();
 		    	$("#create_r_result").hide();
 		    	
 		    } else {
-		    	var url = "./ajax/add_student_record.php"; // the script where you handle the form input.
+		    	var url = "./ajax/add_session_record.php"; // the script where you handle the form input.
 
 			    
 		    	//alert("Submitting the form");
 			    $.ajax({
 		           type: "POST",
 		           url: url,
-		           data: $("#create_user_form").serialize(), // serializes the form's elements.
+		           data: $("#create_session_form").serialize(), // serializes the form's elements.
 		           success: function(data)
 		           {
 		        	   $("#create_u_result").show();
@@ -33,10 +33,15 @@ $(document).ready(function(){
 		    }
 	  	});	  	
 	  	
-	  	$("#theDate").datepicker({
+	  	$("#theStartDate").datepicker({
 	  		changeMonth: true,
 	        changeYear: true,
-	        yearRange: "-99:+0"
+	        yearRange: "-1:+2"
+	  	});
+	  	$("#theEndDate").datepicker({
+	  		changeMonth: true,
+	        changeYear: true,
+	        yearRange: "-0:+3"
 	  	});
 });
 

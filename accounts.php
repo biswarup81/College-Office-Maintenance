@@ -10,15 +10,15 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
 
 <div class="container-fluid">
 	<div class="row">
-        <?php include './inc/master_sidenav.php'; ?>
+        <?php include './inc/accounts_sidenav.php'; ?>
         <div
 			class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">Master Management</h1>
 			<ul>
-				<li><a href="course.php">Course Master</a></li>
-				<li><a href="scheme.php">Scheme Master</a></li>
-				<li><a href="session.php">Session Master</a></li>
-				<li><a href="fee.php">Student Fee Setup</a></li>
+				<li><a href="raise_invoice.php">Raise Invoice</a></li>
+				<li><a href="receive_payment.php">Receive Payment</a></li>
+				<li><a href="reports.php">Accounts Report</a></li>
+				
 			</ul>
 		</div>
 	</div>

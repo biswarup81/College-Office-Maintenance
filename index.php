@@ -23,6 +23,7 @@ if(isset($_REQUEST['action'])){
             
            $_SESSION['user_type'] = $user_role;
            $_SESSION['logged_in_user_id'] = $user_name;
+           $_SESSION['sid'] = "6";
             
             if($user_role== ''){
             	echo "You are not authorize to perform any operation !!";

@@ -13,13 +13,14 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
         <?php include './inc/master_sidenav.php'; ?>
         <div
 			class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">Master Management</h1>
-			<ul>
-				<li><a href="course.php">Course Master</a></li>
-				<li><a href="scheme.php">Scheme Master</a></li>
-				<li><a href="session.php">Session Master</a></li>
-				<li><a href="fee.php">Student Fee Setup</a></li>
-			</ul>
+			<h1 class="page-header">Session Course Linking:</h1>
+			<a>
+			 <?php
+			 $SID = 6;
+			 $sql1 = "CALL SP_LINK_COURSE('$SID', @CNT)";
+			 mysql_query($sql1) or die(mysql_error());
+			 ?>
+			 </a>
 		</div>
 	</div>
 </div>
@@ -29,7 +30,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
 } else {
     echo "You are not authorized to perform any operation. Close the browser and signin again";
 }
-include_once './inc/footer.php';
-?>
+include_once './inc/footer.php';?>
+<script src ="js/courselink.js"></script>
 </body>
 </html>
