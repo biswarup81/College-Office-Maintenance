@@ -93,9 +93,6 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
           </div>
           
             
-          
-        </div>
-    </div>
 
    <?php } else { echo "You are not authorized to perform any operation. Close the browser and signin again"; }
    include_once './inc/footer.php';?>
