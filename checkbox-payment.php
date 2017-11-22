@@ -37,7 +37,7 @@ else
         for($i=0; $i < $N; $i++)
             {
                     $sql = "SELECT row_id, name, amount, discount_category, discount, (amount - discount) item_total, due_dt, paid_flg from pg_student_invoice_item where row_id = " . $aDoor[$i];
-                    $result = mysql_query($sql);
+                    $result = mysql_query($sql) or die(mysql_error());
                     while ($row = mysql_fetch_array($result)) {
                         $total = $total + $row['amount'];
                         $total_disc = $total_disc + $row['discount'];

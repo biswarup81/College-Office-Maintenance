@@ -22,7 +22,7 @@ if(isset($_REQUEST['action'])){
             $user_id = $d->user_id;
             
            $_SESSION['user_type'] = $user_role;
-           $_SESSION['logged_in_user_id'] = $user_name;
+           $_SESSION['logged_in_user_id'] = $user_id;
            $_SESSION['sid'] = "6";
             
             if($user_role== ''){

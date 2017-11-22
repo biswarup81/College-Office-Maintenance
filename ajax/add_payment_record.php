@@ -9,6 +9,9 @@ $student_id = $_POST['student_id'];
 $invoice_id = $_POST['invoice_id'];
 $pay_amount = $_POST['payamt'];
 $pay_dt = date("Y-m-d", strtotime($_POST['thePayDate']));
+$created_by = $_SESSION['logged_in_user_id'];
+$last_updated_by = $_SESSION['logged_in_user_id'];
+
 $item_list = $_POST['item_list'];
 $arr = explode(",", $item_list);
 $arr_len = count($arr);
@@ -16,8 +19,9 @@ $row = 0;
 $res = "";
 $upd = 0;
 $updfail = 0;
-$sql1 = "insert into pg_student_payment (student_id,invoice_id,amount,payment_dt)
-				values('$student_id', '$invoice_id', '$pay_amount', '$pay_dt')";
+$sql1 = "insert into pg_student_payment (student_id,invoice_id,amount,payment_dt,pay_mode, created_by, last_upd_by, last_upd_dt)
+				values('$student_id', '$invoice_id', '$pay_amount', '$pay_dt','CASH','$created_by', '$last_updated_by', NOW())";
+//echo $sql1;
 $chk_ins = mysql_query($sql1) or die(mysql_error());
 if ($chk_ins)
 {

@@ -4,6 +4,7 @@ include_once "./datacon.php";
 include_once "./header.php";
 
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
+	$created_by = $_SESSION['logged_in_user_id'];
     ?>
 
     
@@ -22,7 +23,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
 FROM pg_session_course a inner join pg_session_course_student b on a.row_id = b.session_course_id
 inner join pg_fee_master c on a.course_id = c.course_id inner join pg_student d on b.student_id = d.row_id where a.session_id = " . $session_id . " and c.row_id = " . $fee_id;
     
-    $result = mysql_query($sql1);
+    //echo $sql1;
+    
+    $result = mysql_query($sql1) or die(mysql_error());
     
     $count = 1;
     while ($row = mysql_fetch_array($result)) {
@@ -31,10 +34,10 @@ inner join pg_fee_master c on a.course_id = c.course_id inner join pg_student d 
         $fee_name = $row['fee_name'];
         $catg = $row['student_category'];
         $ph_c = $row['ph_challenged'];
-        $ins_inv = "insert into pg_student_invoice(session_course_id, student_id,  name, fee_id)
- values(" . $session_course_id . "," . $student_id . " , '" . $fee_name . "' , " . $fee_id . ")";
-        // echo $ins_inv;
-        $chk_ins = mysql_query($ins_inv);
+        $ins_inv = "insert into pg_student_invoice(session_course_id, student_id,  name, fee_id, invoice_dt, created, created_by, last_upd_dt, last_upd_by)
+ values(" . $session_course_id . "," . $student_id . " , '" . $fee_name . "' , " . $fee_id . ", NOW(), NOW(), '".$created_by."', NOW(), '".$created_by."')";
+        //echo $ins_inv;
+        $chk_ins = mysql_query($ins_inv) or die(mysql_error());
         if ($chk_ins) {
             $inv_id = mysql_insert_id();
             echo "<br>" . $inv_id . "</br>";
@@ -45,7 +48,7 @@ from pg_fee_item a where a.par_row_id = " . $fee_id . " and a.active_flg = 1 ord
             // echo "<br>" . $sql2 . "</br>";
             
             echo "<h1>" . $student_id . " - " . $catg . " - " . $ph_c . "</h1>";
-            $res_item = mysql_query($sql2);
+            $res_item = mysql_query($sql2) or die(mysql_error());
             while ($row_item = mysql_fetch_array($res_item)) {
                 $item_id = $row_item['item_id'];
                 $item_name = $row_item['item_name'];
@@ -59,7 +62,7 @@ from pg_fee_item a where a.par_row_id = " . $fee_id . " and a.active_flg = 1 ord
                     $sql3 = "select category, amount from pg_fee_item_discount where par_row_id = " . $item_id . " and category = '" . $catg . "' and active_flg = 1 order by amount desc";
                 // echo $sql3;
                 $cnt = 0;
-                $res_disc = mysql_query($sql3);
+                $res_disc = mysql_query($sql3) or die(mysql_error());
                 
                 if ($row_disc = mysql_fetch_array($res_disc)) {
                     $cnt = $cnt + 1;
@@ -71,9 +74,10 @@ from pg_fee_item a where a.par_row_id = " . $fee_id . " and a.active_flg = 1 ord
                     $discount_category = "NA";
                 }
                 echo "<br>" . $discount_category . " - " . $discount . "</br>";
-                $ins_inv_item = "insert into pg_student_invoice_item(invoice_id, item_id, name, amount, discount_category, discount, due_dt)
- values(" . $inv_id . "," . $item_id . ", '" . $item_name . "' , '" . $item_amt . "' , '" . $discount_category . "' , " . $discount . "," . $due_by . ")";
-                $chk_ins = mysql_query($ins_inv_item);
+                $ins_inv_item = "insert into pg_student_invoice_item(invoice_id, item_id, name, amount, discount_category, discount, due_dt, created, created_by, last_upd_dt, last_upd_by, paid_flg, active_flg)
+ values(" . $inv_id . "," . $item_id . ", '" . $item_name . "' , '" . $item_amt . "' , '" . $discount_category . "' , " . $discount . ",NOW(), NOW(), '".$created_by."', NOW(), '".$created_by."', 0, 1)";
+                echo $ins_inv_item;
+                $chk_ins = mysql_query($ins_inv_item) or die(mysql_error());
                 if ($chk_ins) {
                     $inv_item_id = mysql_insert_id();
                     echo "<br>" . $inv_item_id . "</br>";
