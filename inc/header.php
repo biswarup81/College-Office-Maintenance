@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Online Prescription, Digital Prescription, Prescription, ePrescription, Online doctor appointment, Dr. Soumyabrata Roy Choudhuri, Health Management Software">
-	<meta name="keywords" content="Online Prescription, Digital Prescription, Prescription, ePrescription, Online doctor appointment, Dr. Soumyabrata Roy Choudhuri">
+    <meta name="description" content="College Office Software">
+	<meta name="keywords" content="College Office Software">
 	<meta name="author" content="P.G.INFOSERVICES">
     <link rel="icon" href="./inc/favicon.ico">
 
-    <title>Online Prescription, Prescription, ePrescription, Online doctor appointment, Health Management Software, Digital Prescription</title>
+    <title>College Office Management</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">

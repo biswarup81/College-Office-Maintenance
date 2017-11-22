@@ -17,6 +17,8 @@ $(document).ready(function(){
 	
 	$("#vedor_search").click(function(){
 		//alert('Clicked');
+		$("#vendor_payment").hide();
+		$("#payment_u_result").hide();
 		$("#vendor_result").show();
 	});
 	
