@@ -53,11 +53,15 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 			</div>
 			
 			<div class="row">
+			<form id="payment_form" class="form-horizontal" method="post">
 			<div class="col-md-6" id="vendor_payment" hidden="true">
+			
+			<input type="hidden" id="hidden_vendor_id" name="hidden_vendor_id">
+			
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Select Payment Head</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="title" id="title">
+						<select class="form-control" name="head" id="head">
 						<option value="0">--SELECT--</option>
 						<option value="Sports">Sports</option>
 						<option value="Stationery">Stationery</option>
@@ -79,9 +83,11 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 					<input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount (No decimal allowed)">
 					</div>
 				</div>
-				<button type="button" class="btn btn-success" id="vedor_pay">Pay</button>
-				</div>
+				<button type="button" class="btn btn-success" id="vedor_pay" name="PAYMENT">Pay</button>
 				
+				
+				</div>
+				</form>  
 				</div>
 				<div class="alert alert-info" role="alert" id="payment_u_result" hidden="true">
 			
