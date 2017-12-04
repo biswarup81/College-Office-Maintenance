@@ -1,0 +1,8 @@
+
+@font-face {
+  font-family: 'Sailec-Light';
+  src: url('Sailec-Light.eot?#iefix') format('embedded-opentype'),  url('Sailec-Light.otf')  format('opentype'),
+	     url('Sailec-Light.woff') format('woff'), url('Sailec-Light.ttf')  format('truetype'), url('Sailec-Light.svg#Sailec-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

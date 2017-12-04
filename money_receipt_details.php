@@ -21,6 +21,7 @@ while ($row = mysql_fetch_array($res)) {
     $student_id = $row['student_id'];
     $fst_name = $row['fst_name'];
     $last_name = $row['last_name'];
+    
 }
 
 ?>
@@ -49,7 +50,7 @@ while ($row = mysql_fetch_array($res)) {
 
 $sql1 = "SELECT row_id, name, amount, discount_category, discount, (amount - discount) item_total, due_dt, paid_flg 
 from pg_student_invoice_item where invoice_id = " . $invoice_id. " and paid_flg=1";
-$result = mysql_query($sql1);
+$result = mysql_query($sql1) or die(mysql_error());
     $count = 1;
     $student_list = "";
     while ($row = mysql_fetch_array($result)) {
@@ -77,8 +78,8 @@ $result = mysql_query($sql1);
             	</div>
             	<div class="row" >    
             	  <p>
-            	  	<button type="button" class="btn btn-lg btn-warning">Back</button>
-			        <button type="button" class="btn btn-lg btn-success">Print</button>
+            	  	<a href="/college-office-software/money_receipt.php"  class="btn btn-lg btn-warning">Back</a>
+			        <a href="/college-office-software/print/fees_p.php?invoice_id=<?php echo $invoice_id ?>" target="_blank" class="btn btn-lg btn-success" >Print</a>
 			        
 			        
 			      </p>
