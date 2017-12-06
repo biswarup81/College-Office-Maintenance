@@ -17,9 +17,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="settings.php">Settings</a></li>
-            <li><a href="profile.php">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="accounts.php">Accounts</a></li>
+            <li><a href="student.php">Student Management</a></li>
+            <li><a href="master.php">Master Data</a></li>
+            <li><a href="yearend.php">Year End</a></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>
           <form class="navbar-form navbar-right">

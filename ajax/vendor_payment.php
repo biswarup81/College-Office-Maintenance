@@ -17,7 +17,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 				
 				$pay_id = mysql_insert_id();
 				
-				echo "Payment is successful. <a class='btn btn-primary' href='./print_voucher.php?payment_id=".$pay_id."'>Click Here !!</a> to print voucher";
+				echo "Payment is successful. <a class='btn btn-primary' href='./print/debit_voucher_p.php?payment_id=".$pay_id."'>Click Here !!</a> to print voucher";
 				
 			//}
 } else {

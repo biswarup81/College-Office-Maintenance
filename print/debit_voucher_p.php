@@ -1,3 +1,5 @@
+<?php include_once "../inc/datacon.php"; 
+include '../classes/admin_class.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,18 @@
 <link rel="stylesheet" href="css/style.css" media="all">
 
 </head>
+<?php 
+if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['payment_id'])){
+	$admin = new admin();
+	$payment_id = $_GET['payment_id'];
+	$_QUERY = "SELECT * FROM pg_vendor_payment where row_id = '$payment_id' ";
+	
+	$result = mysql_query($_QUERY) or die(mysql_error());
+	//$count = 0;
+	$student_list = "";
+	$row = mysql_fetch_array($result);
+	$payment_date = date("d / m / Y", strtotime($row['created']));
+	?>
 <body>
   <page size="A4">
   		<div class="leater-head text-center clrfix">
@@ -15,9 +29,9 @@
         </div>
         <div class="leater-head-sub text-left clrfix">
         		
-                		<div class="col-xs-6 text-col pull-left"><span>No</span><input type="text"></div>
-                        <div class="col-xs-6 text-col pull-right text-right"><span>Date</span><input type="text"></div>
-                        <div class="col-xs-12 text-col-full pull-left"><span>A/c</span><textarea class="notes" rows="2"></textarea></div>
+                		<div class="col-xs-6 text-col pull-left"><span>No</span><input type="text" value="<?php echo $row['row_id']; ?>"></div>
+                        <div class="col-xs-6 text-col pull-right text-right"><span>Date</span><input type="text" value="<?php echo $payment_date; ?>"></div>
+                        <div class="col-xs-12 text-col-full pull-left"><span>A/c</span><textarea class="notes" rows="2"><?php echo $row['payment_type'];?></textarea></div>
                 
         </div>
         
@@ -38,28 +52,36 @@
                                 </div>
                         </div>
                     </div>
-                    
+                    <?php 
+                    	//$count = $count + 1;
+						
+						
+						$f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+						$total_in_words = strtoupper($f->format($row['amount']));  
+						$vendor_id = $row['vendor_id'];
+						
+						$_QUERY_2 = "SELECT concat(fst_name,' ',last_name) as name FROM pg_staff where row_id='$vendor_id' UNION SELECT name from pg_vendor where row_id='$vendor_id'";
+						$result2 = mysql_query($_QUERY_2) or die(mysql_error());
+						$row2 = mysql_fetch_array($result2)
+						
+						?>
+						
                     <div class="bill-main-wrapp col-xs-12 pull-left">
-                    	<div class="col-xs-7 bill-main-text-col pull-left"><textarea>a</textarea></div>
-                        <div class="col-xs-3 bill-main-text-col pull-left"><textarea>c</textarea></div>
-                        <div class="col-xs-2 bill-main-text-col pull-right"><textarea>d</textarea></div>		
+                    	<div class="col-xs-7 bill-main-text-col pull-left"><textarea><?php echo $row['purpose']; ?></textarea></div>
+                        <div class="col-xs-3 bill-main-text-col pull-left"><textarea><?php echo $row['amount']; ?></textarea></div>
+                        <div class="col-xs-2 bill-main-text-col pull-right"><textarea>00</textarea></div>		
                     </div>
-                    <div class="bill-main-footer col-xs-12 pull-left">
-                    	<div class="col-xs-7 bill-main-text-bottom pull-left">Total</div>
-                        <div class="col-xs-3 bill-main-text-bottom pull-left total-text"><textarea>aaa</textarea></div>
-                        <div class="col-xs-2 bill-main-text-bottom pull-right total-text"><textarea>aaa</textarea></div>
-                      		
-                    </div>
+                  
+                    
             </div>
         
         </div>
         
         <div class="bill-footer col-xs-12 clrfix">
         		<div class="bill-footer-text">Recevied from kandra R.K.K. Mahavidyalaya the sum of</div>
-                <div class="bill-footer-text-rupees">Rupees<input type="text"></div>
-                <div class="bill-footer-text-signature">Recipient's Signature</div>
-                
-                <div class="bill-footer-text-rupees">Pay Rs<input type="text"></div>
+                <div class="bill-footer-text-rupees">Rupees<input type="text" value="<?php echo $total_in_words; ?>"></div>
+                <div class="bill-footer-text-signature">(<?php echo $row2['name'];?>)</div>
+                <div class="bill-footer-text-rupees">Pay Rs<input type="text" value="<?php echo $total_in_words; ?>"></div>
                 <div class="bill-footer-text-principal-teac pull-left text-left">
                 <strong>Principal/Teacher-in-charge</strong>
 
@@ -71,6 +93,6 @@ Kandra R.K.K.Mahavidyalaya
                 </div>
         </div>
   </page>
-
+<?php } else { echo "You are not authorized to perform any operation. Close the browser and signin again"; } ?>
 </body>
 </html>
