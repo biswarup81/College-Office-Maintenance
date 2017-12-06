@@ -36,9 +36,9 @@ $page = $_REQUEST['page'];
 				<?php }?>
 			
 			<?php if ($page == 6 ) {?>
-			<li class="active"><a href="money_receipt.php">Money Receipt</a></li>
+			<li class="active"><a href="money_receipt.php">Money Receipt List</a></li>
 			<?php } else {?>
-			<li><a href="money_receipt.php">Money Receipt</a></li>
+			<li><a href="money_receipt.php">Money Receipt List</a></li>
 			<?php }?>
 			
 			<?php if ($page == 7 ) {?>
