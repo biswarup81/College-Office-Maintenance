@@ -9,7 +9,7 @@ include '../classes/admin_class.php'; ?>
 
 </head>
 <?php 
-if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['payment_id'])){
+if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['payment_id']) ){
 	$admin = new admin();
 	$payment_id = $_GET['payment_id'];
 	$_QUERY = "SELECT * FROM pg_vendor_payment where row_id = '$payment_id' ";
@@ -19,6 +19,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 	$student_list = "";
 	$row = mysql_fetch_array($result);
 	$payment_date = date("d / m / Y", strtotime($row['created']));
+	
 	?>
 <body>
   <page size="A4">

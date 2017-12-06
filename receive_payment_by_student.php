@@ -1,7 +1,7 @@
 <?php
 include_once "./inc/datacon.php";
 include_once "./inc/header.php";
-
+$_REQUEST['page'] = '4';
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
     ?>
 

@@ -1,7 +1,9 @@
 <?php include_once "./inc/datacon.php";
 include_once "./inc/header.php"; 
 
-if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['invoice_id'])){
+if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['invoice_id']) ){
+	
+	$_REQUEST['page'] = '7';
 ?>
 
     <?php include './inc/dashboard_topnav.php'; ?>
