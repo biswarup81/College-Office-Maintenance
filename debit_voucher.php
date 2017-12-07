@@ -46,9 +46,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) ){
 					</thead>
 					<tbody>
 						<tr>
-						<td><input type="radio" onclick="getDetails('Biswarup');"></td>
-						<td>Biswarup Ghoshal</td>
-						<td>Staff</td>
+						
 						</tr>
 					</tbody>
 				</table>
