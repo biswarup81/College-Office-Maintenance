@@ -15,12 +15,12 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
           <div class="row">
           <div class="col-md-12">
         		<h2 class="sub-header">Scheme Master</h2>
-        		
+				<a class="btn btn-warning" href="add_scheme.php" role="button">Add Scheme+</a>
         		<table id="visit_lisr" class="table table-striped">
 		              <thead>
 							<tr>
 								<th>Scheme Name</th>
-								
+								<th>Scheme Amount</th>
 								<th>Start Date</th>
 								<th>End Date</th>
 								<th>Active</th>
@@ -29,19 +29,29 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 								
 							</tr>
 						</thead>
-						<tfoot>
-							<tr>
-								<th>Kanyashree</th>
-								
-								<th>01-Jun-13</th>
-								<th></th>
-								<th>Y</th>
-								
-								<th>Girl student</th>
-								
+						<tbody>
+<?php
 
+$sql = "SELECT * from pg_scheme";
+$res = mysql_query($sql);
+$count = 0;
+while ($row = mysql_fetch_array($res)) {
+    $count = $count + 1;
+    ?>
+    
+							<tr>
+								<td><?php echo $row['name']; ?></td>
+								<td><?php echo $row['amount']; ?></td>
+								<td><?php echo date("d / m / Y", strtotime($row['start_dt'])); ?></td>
+								<td><?php echo date("d / m / Y", strtotime($row['end_dt'])); ?></td>
+								<td><?php if ( $row['active_flg']) echo "Y"; else echo "N"; ?></td>
+								<td><?php echo $row['criteria']; ?></td>
 							</tr>
-						</tfoot>
+
+	<?php
+}
+	?>					
+						
 		              </tbody>
             	</table>
         		</div>
