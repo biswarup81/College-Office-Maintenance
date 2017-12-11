@@ -4,6 +4,7 @@ include_once "./inc/datacon.php";
 include_once "./inc/header.php";
 
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
+	if($_SESSION['user_type'] == "PRINCIPAL" || $_SESSION['user_type'] == "PROFESSOR" ) {
     ?>
 
     <?php include './inc/dashboard_topnav.php'; ?>
@@ -27,7 +28,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
 
 <?php
 
-} else {
+	}else {
+		echo "You are not authorized to perform any operation on this page. ";
+	} } else {
     echo "You are not authorized to perform any operation. Close the browser and signin again";
 }
 include_once './inc/footer.php';?>

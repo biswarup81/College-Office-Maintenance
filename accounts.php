@@ -6,8 +6,9 @@ include_once "./inc/header.php";
 $_REQUEST['page'] = '1';
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
     ?>
-
-    <?php include './inc/dashboard_topnav.php'; ?>
+    <?php 
+    
+    include './inc/dashboard_topnav.php';  ?>
 
 <div class="container-fluid">
 	<div class="row">

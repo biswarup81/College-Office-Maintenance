@@ -2,6 +2,7 @@
 include_once "./inc/header.php"; 
 
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['sc_id'])){
+	if($_SESSION['user_type'] == "PRINCIPAL" || $_SESSION['user_type'] == "PROFESSOR" ) {
 ?>
 
     <?php include './inc/dashboard_topnav.php'; ?>
@@ -90,7 +91,9 @@ $result = mysql_query($sql1);
       </div>
     </div>
 
-   <?php } else { echo "You are not authorized to perform any operation. Close the browser and signin again"; }
+   <?php } else {
+	echo "You are not authorized to perform any operation on this page.";
+}} else { echo "You are not authorized to perform any operation. Close the browser and signin again"; }
    include_once './inc/footer.php';?>
    <script src ="js/yearend.js"></script>
    

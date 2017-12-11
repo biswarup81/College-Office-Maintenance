@@ -27,9 +27,10 @@ if(isset($_REQUEST['action'])){
             
             if($user_role== ''){
             	echo "You are not authorize to perform any operation !!";
+            } else if ($user_role== 'ACCOUNTS') {
+            	echo "<script>location.href='accounts.php'</script>";
             } else {
             	echo "<script>location.href='dashboard.php'</script>";
-            	
             }
         } else{
         	$err = true;
