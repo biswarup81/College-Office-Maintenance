@@ -15,7 +15,7 @@
           </button>
           <a class="navbar-brand" href="#">Kandra Radha Kanta Kundu Mahavidhyalaya</a>
           <p class="navbar-brand" > | </p>
-          <p class="navbar-brand" >(Welcome Dr. Mrinalkanti Chattopadhyay) </p>
+          <p class="navbar-brand" >(Welcome <?php if ( isset($_SESSION['user_full_name'])) {echo $_SESSION['user_full_name'] ; }?>) </p>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         	

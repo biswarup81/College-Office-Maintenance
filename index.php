@@ -20,9 +20,11 @@ if(isset($_REQUEST['action'])){
             $user_role = $d->role;
             $user_name = $d->user_name;
             $user_id = $d->user_id;
+            $user_full_name = $d->user_full_name;
             
            $_SESSION['user_type'] = $user_role;
            $_SESSION['logged_in_user_id'] = $user_id;
+           $_SESSION['user_full_name'] = $user_full_name;
            $_SESSION['sid'] = "6";
             
             if($user_role== ''){
