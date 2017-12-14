@@ -60,6 +60,13 @@ $page = $_REQUEST['page'];
 			<?php } else {?>
 			<li><a href="debit_voucher_list.php">Debit Voucher List</a></li>
 			<?php }?>
+
+			<?php if ($page == 51 ) {?>
+			<li class="active"><a href="vendor.php">Vendor List</a></li>
+			<?php } else {?>
+			<li><a href="vendor.php">Vendor List</a></li>
+			<?php }?>
+
 			
 			<?php if ($page == 8 ) {?>
 			<li class="active"><a href="reports.php">Accounts Report</a></li>
