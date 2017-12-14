@@ -61,7 +61,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) ){
 			
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Select Payment Head</label>
-					<div class="col-sm-2">
+					<div class="col-sm-6">
 						<select class="form-control" name="head" id="head">
 						<option value="0">--SELECT--</option>
 						<option value="Sports">Sports</option>
@@ -73,15 +73,15 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) ){
 				</div>
 				<div class="form-group">
 					<label for="fname" class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 					<input type="text" class="form-control" name="description" id="description" placeholder="Enter Description">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="amount" class="col-sm-2 control-label">Amount (Rs.)</label>
-					<div class="col-sm-2">
-					<input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount (No decimal allowed)">
+					<div class="col-sm-4">
+					<input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount">
 					</div>
 				</div>
 				<button type="button" class="btn btn-success" id="vedor_pay" name="PAYMENT">Pay</button>

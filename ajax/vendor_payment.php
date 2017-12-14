@@ -11,7 +11,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 				
 				
 				$sql1 = "insert into pg_vendor_payment (vendor_id,amount,payment_type,payment_dt,purpose,active_flg,created,created_by,last_upd_dt,last_upd_by)
-				values('$id','$amount','$head', NOW(), '$head', '1', NOW(), '$user_id', NOW(), '$user_id' )";
+				values('$id','$amount','$head', NOW(), '$description', '1', NOW(), '$user_id', NOW(), '$user_id' )";
 				
 				mysql_query($sql1) or die("<b>A fatal MySQL error occured</b>.\n<br />Query: " . $sql1. "<br />\nError: (" . mysql_errno() . ") " . mysql_error());
 				

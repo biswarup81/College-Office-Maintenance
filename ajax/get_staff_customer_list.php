@@ -6,9 +6,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 		$q = strtolower($_GET["term"]);
 		if (!$q) return;
 		
-		$sql = "select fst_name as name, row_id as id from pg_staff where fst_name like '$q%' 
-		UNION
-		select name, row_id as id from pg_vendor where name like '$q%'";
+		//$sql = "select fst_name as name, row_id as id, 'staff' as vendor_type from pg_staff where fst_name like '$q%' 
+		//UNION
+		$sql = "select name, row_id as id, vendor_type from pg_vendor where name like '$q%'";
 		//$sql = "select * from medicine_master a where a.MEDICINE_NAME LIKE '$q%' and a.MEDICINE_STATUS = 'ACTIVE' AND a.chamber_id='$chamber_name' AND a.doc_id='$doc_name'";
 		/* $rsd = mysql_query($sql);
 		 while($rs = mysql_fetch_array($rsd)) {
@@ -33,9 +33,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 		$mode = $_GET['MODE'];
 		if ($mode == "ALL_RECORDS"){
 			$name=$_GET['name'];
-			$sql = "select CONCAT(fst_name,' ', last_name) as name, row_id as id from pg_staff where fst_name like '$name%' OR `last_name` like '$name%'
-			UNION
-			select name, row_id as id from pg_vendor where name like '$name%'";
+			//$sql = "select CONCAT(fst_name,' ', last_name) as name, row_id as id, 'staff' as vendor_type from pg_staff where fst_name like '$name%' OR `last_name` like '$name%'
+			//UNION
+			$sql = "select name, row_id as id, vendor_type from pg_vendor where name like '$name%'";
 			//echo $sql;
 			$result = mysql_query($sql)or die(mysql_error());
 			echo '<div class="col-sm-6">
@@ -53,7 +53,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 				echo '<tr>
 						<td><input id="radio_'.$row['id'].'" type="radio" name="vendor_id_selector" onclick="getDetails('.$row['id'].');" value='.$row['id'].'></td>
 						<td>'.$row['name'].'</td>
-						<td>Staff</td>
+						<td>'.$row['vendor_type'].'</td>
 						</tr>';
 			}
 			
