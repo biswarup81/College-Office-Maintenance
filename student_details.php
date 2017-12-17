@@ -23,6 +23,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 				<a class="btn btn-warning" href=<?php echo "add_student_mobile.php?student_id=".$student_id?> role="button">+Add Student Mobile+</a>
 				<a class="btn btn-warning" href=<?php echo "add_student_phone.php?student_id=".$student_id?> role="button">+Add Student Phone+</a>
 				<a class="btn btn-warning" href=<?php echo "add_student_email.php?student_id=".$student_id?> role="button">+Add Student eMail+</a>
+				<a class="btn btn-warning" href=<?php echo "student_course_linking.php?student_id=".$student_id?> role="button">+Link Course+</a>
 
 					<table id="session_list" class="table table-striped">
 						<thead>
