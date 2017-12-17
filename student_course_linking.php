@@ -17,7 +17,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
           <div class="col-md-12">
 <form id="link_student_course_form" class="form-horizontal" >
 <input type="hidden" name="student_id" id="student_id" value=<?php echo $student_id; ?>  >
-<input  name="test" id="test" value="test"  >
+
 			<div class="alert alert-danger" role="alert" id="search_alert_2" hidden="true">
 			</div>
 			
@@ -42,7 +42,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 
 			<div class="form-group">
 			<label class="col-sm-2 control-label">Course</label>
-			<div class="col-sm-2">
+			<div class="col-sm-4">
 			<select class="form-control" name="course" id="course">
 			<option value="">--SELECT--</option>
 			<?php
@@ -58,11 +58,21 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 			</select>
 			</div>
 			</div>
-	
+	<?php
+	$result = mysql_query("SELECT * FROM pg_session_course_student a where student_id = '$student_id' and active_flg = 1");
+	$rec_count = mysql_num_rows($result);
+			?>
 			
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-			<input type="button" id="link_student_course" class="btn btn-default"  value="Link" name="Link" >
+			<?php 
+			if ($rec_count>0)
+			    echo "<input type='button' disabled='disabled' id='link_student_course' class='btn btn-default' value='Course Already Linked' name='Link' >";
+			else
+			    
+			    echo "<input type='button' id='link_student_course' class='btn btn-default' value='Link Course' name='Link' >";
+			?> 
+			
 			</div>
 			</div>
 			</form>
