@@ -19,11 +19,12 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 			<div class="row">
 				<div class="col-md-12">
 				<h2 class="sub-header">Student Detail</h2>
-				<a class="btn btn-warning" href=<?php echo "add_student_addr.php?student_id=".$student_id?> role="button">+Add Student Address+</a>
-				<a class="btn btn-warning" href=<?php echo "add_student_mobile.php?student_id=".$student_id?> role="button">+Add Student Mobile+</a>
-				<a class="btn btn-warning" href=<?php echo "add_student_phone.php?student_id=".$student_id?> role="button">+Add Student Phone+</a>
-				<a class="btn btn-warning" href=<?php echo "add_student_email.php?student_id=".$student_id?> role="button">+Add Student eMail+</a>
+				<a class="btn btn-warning" href=<?php echo "add_student_addr.php?student_id=".$student_id?> role="button">+Add Address+</a>
+				<a class="btn btn-warning" href=<?php echo "add_student_mobile.php?student_id=".$student_id?> role="button">+Add Mobile+</a>
+				<a class="btn btn-warning" href=<?php echo "add_student_phone.php?student_id=".$student_id?> role="button">+Add Phone+</a>
+				<a class="btn btn-warning" href=<?php echo "add_student_email.php?student_id=".$student_id?> role="button">+Add eMail+</a>
 				<a class="btn btn-warning" href=<?php echo "student_course_linking.php?student_id=".$student_id?> role="button">+Link Course+</a>
+				<a class="btn btn-warning" href=<?php echo "student_scheme_apply.php?student_id=".$student_id?> role="button">+Scheme Application+</a>
 
 					<table id="session_list" class="table table-striped">
 						<thead>
