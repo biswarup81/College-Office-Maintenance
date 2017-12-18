@@ -33,7 +33,8 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
 	} } else {
     echo "You are not authorized to perform any operation. Close the browser and signin again";
 }
-include_once './inc/footer.php';?>
+include_once './inc/footer.php';
+?>
 <script src ="js/courselink.js"></script>
 </body>
 </html>
