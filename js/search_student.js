@@ -28,6 +28,33 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	$("#search_student_det").click(function() {
+
+		if (empty($("#student_id").val()) && empty($("#fst_name").val()) && empty($("#last_name").val()) ) {
+			$("#search_alert_2").html("Enter Student Id or First Name or Last Name");
+			$("#search_alert_2").show();
+			$("#create_u_result").show();
+
+		} 
+		else {
+
+			var url = "./ajax/search_student_det.php"; // the script where you handle the form input.
+
+			//alert("Submitting the form");
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : $("#search_student_form").serialize(), // serializes the form's elements.
+				success : function(data) {
+					$("#create_u_result").html(data);
+					$("#create_u_result").show();
+					$("#search_alert_2").hide();
+					
+				}
+			});
+		}
+	});
 
 	$("#thePayDate").datepicker({
 		changeMonth : true,
