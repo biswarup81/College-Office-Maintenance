@@ -17,7 +17,9 @@
     <!-- Bootstrap theme -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="jquery/themes/base/jquery-ui.css" rel="stylesheet">
-    
+
+	<link rel="stylesheet" href="./css/imgareaselect.css">
+	
     <!--  <link href="jquery/themes/base/jquery.ui.autocomplete.css" rel="stylesheet">
     <link href="jquery/themes/base/jquery.ui.datepicker.css" rel="stylesheet">
 	<link href="jquery/themes/base/jquery.ui.accordion.css" rel="stylesheet">

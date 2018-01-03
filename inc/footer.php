@@ -29,3 +29,7 @@
 <script type="text/javascript" src="media/js/buttons.print.min.js">
 	</script>
 <script src="ckeditor/ckeditor.js"></script>
+<!-- Added for profile picture -->
+<script src="js/jquery.imgareaselect.js" type="text/javascript"></script>
+<script src="js/jquery.form.js"></script>
+<script src="js/functions.js"></script>
