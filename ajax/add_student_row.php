@@ -19,10 +19,11 @@ include '../classes/admin_class.php';
 				last_name,gender, dob, aadhaar_no, category, ph_challenged)
 				values('$title','$fname','$mname', '$lname', '$gender', '$dob', '$aadhaar_no', '$category', '$phc' )";
 				mysql_query($sql1) or die(mysql_error());
+				$student_id = mysql_insert_id();
 			
 
 				
-				echo "Dear  $fname $lname !! Registration is successful. <a class='btn btn-primary' href='./index_login.php'>Login Now !!</a>";
+				echo "Dear  $fname $lname !! Registration is successful. <a class='btn btn-primary' href='./add_student_addr.php?student_id=".$student_id."'>Add Address Now !!</a> or . <a class='btn btn-primary' href='./student_details.php?student_id=".$student_id."'>View Student Details !!</a>";
 				
 			//}
 		

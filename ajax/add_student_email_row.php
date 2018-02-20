@@ -15,7 +15,7 @@ include '../classes/admin_class.php';
 			
 
 				
-				echo "Email Address for $student_id is recorded successfully. <a class='btn btn-primary' href='./index_login.php'>Login Now !!</a>";
+				echo "Email Address $email for $student_id is recorded successfully. <a class='btn btn-primary' href='./add_student_addr.php?student_id=".$student_id."'>Add Address Now !!</a> or . <a class='btn btn-primary' href='./student_details.php?student_id=".$student_id."'>View Student Details !!</a>";
 				
 			//}
 		

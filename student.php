@@ -26,7 +26,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 								<th>Last Name</th>
 								<th>Date Of Birth</th>
 								<th>Category</th>
-								<th>Old Student Id</th>
+								<th>Student Univ Id</th>
 								<th>Active</th>
 								
 								
