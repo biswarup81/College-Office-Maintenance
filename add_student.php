@@ -37,7 +37,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 			<div class="form-group">
 			<label for="fname" class="col-sm-2 control-label">First Name</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name">
+			<input type="text" name="fname" id="fname" class="text-uppercase" placeholder="Enter First Name">
 			</div>
 			</div>
 			

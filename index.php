@@ -26,12 +26,24 @@ if(isset($_REQUEST['action'])){
            $_SESSION['logged_in_user_id'] = $user_id;
            $_SESSION['user_full_name'] = $user_full_name;
            $_SESSION['sid'] = "6";
+           
             
             if($user_role== ''){
             	echo "You are not authorize to perform any operation !!";
             } else if ($user_role== 'ACCOUNTS') {
             	echo "<script>location.href='accounts.php'</script>";
-            } else {
+            } else if ($user_role== 'STUDENT'){
+            	//get Student ID from old_student_id
+            	
+            	$sql="select row_id from pg_student where old_student_id=".$user_name;
+            	$r = mysql_query($sql) or die(mysql_error());
+            	$d = mysql_fetch_object($r) ;
+            	$student_id = $d->row_id;
+            	
+            	$_SESSION['STUDENT_ID'] = $student_id;
+            	$url = "student_details.php?student_id=".$student_id;
+            	echo "<script>location.href='".$url."'</script>";
+            } else if($user_role== 'PRINCIPAL' || $user_role== 'PROFESSOR'){
             	echo "<script>location.href='dashboard.php'</script>";
             }
         } else{
@@ -39,7 +51,7 @@ if(isset($_REQUEST['action'])){
         //echo "<font color='red'>Invalid User Name or Password</font>";
 
         }
-    }
+    } 
 } 
 ?>
 
@@ -68,10 +80,14 @@ if(isset($_REQUEST['action'])){
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-
-        <button name="login" value="Login" class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+		<p>
+		<button type="submit" name="login" value="Login" class="btn btn-lg btn-success">Sign in</button>
+        <a class="btn btn-lg btn-primary" href="register.php" >Register</a>
+        
+        </p>
+		<a  href="forgot_password.php" >Forget Password</a>
       </form>
-
+		
     </div> <!-- /container -->
     <?php include_once './inc/footer.php';?>
   </body>

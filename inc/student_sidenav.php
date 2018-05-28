@@ -1,4 +1,6 @@
-
+<?php if ( isset($_SESSION['logged_in_user_id'])) {
+          	if( $_SESSION['user_type'] == 'PRINCIPAL' || $_SESSION['user_type'] == 'PROFESSOR') {
+          	?>
 <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="dashboard.php">Overview <span class="sr-only">(current)</span></a></li>
@@ -9,3 +11,4 @@
          
           
 </div>
+<?php } }?>

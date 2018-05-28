@@ -73,6 +73,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $sql = "insert into pg_student_photo(student_id, filename) values ('$student_id', '$filename')";
+            echo $sql;
             mysql_query($sql) or die(mysql_error());
             $att_rec_id = mysql_insert_id();
             $sql_upd = "Update pg_student_photo set active_flg = 0, last_upd_dt =now() where student_id = ".$student_id." and active_flg = 1 and row_id !=".$att_rec_id;

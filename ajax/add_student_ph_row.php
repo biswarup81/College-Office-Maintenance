@@ -12,10 +12,10 @@ include '../classes/admin_class.php';
 				$sql1 = "insert into pg_student_ph (student_id, std_code, ph_num)
 				values('$student_id','$std_code', '$ph_num')";
 				mysql_query($sql1) or die(mysql_error());
-			
+				$url = "student_details.php?student_id=".$student_id;
 
 				
-				echo "Phone Number for $student_id is recorded successfully. <a class='btn btn-primary' href='./index_login.php'>Login Now !!</a>";
+				echo "Phone Number for $student_id is recorded successfully. <a class='btn btn-primary' href='".$url."'>Back</a>";
 				
 			//}
 		

@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.1
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 22, 2017 at 11:15 PM
--- Server version: 5.6.36
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: May 24, 2018 at 04:13 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -51,8 +49,8 @@ CREATE TABLE `pg_course` (
   `par_row_id` int(11) NOT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
-  `last_upd_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `last_upd_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -74,9 +72,9 @@ CREATE TABLE `pg_course_level` (
   `row_id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -103,9 +101,9 @@ CREATE TABLE `pg_fee_item` (
   `due_by_unit` varchar(6) NOT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -131,9 +129,9 @@ CREATE TABLE `pg_fee_item_discount` (
   `amount` int(6) NOT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -160,9 +158,9 @@ CREATE TABLE `pg_fee_master` (
   `name` varchar(50) NOT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -188,9 +186,9 @@ CREATE TABLE `pg_scheme` (
   `criteria` text,
   `amount` int(11) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(10) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(10) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -216,9 +214,9 @@ CREATE TABLE `pg_schm_application` (
   `status` varchar(10) NOT NULL DEFAULT 'New',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `approved_dt` datetime DEFAULT NULL,
-  `created_by` int(10) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(10) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -243,8 +241,8 @@ CREATE TABLE `pg_session` (
   `course_linked` tinyint(1) NOT NULL,
   `par_row_id` int(11) DEFAULT NULL COMMENT 'prev_session_id',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
-  `last_upd_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `last_upd_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -272,9 +270,9 @@ CREATE TABLE `pg_session_course` (
   `end_dt` date DEFAULT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -300,9 +298,9 @@ CREATE TABLE `pg_session_course_student` (
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `promo_retained` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -327,9 +325,9 @@ CREATE TABLE `pg_specialisation` (
   `name` varchar(30) NOT NULL,
   `pr_subject_id` int(11) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -351,14 +349,14 @@ CREATE TABLE `pg_staff` (
   `fst_name` varchar(30) NOT NULL,
   `middle_name` varchar(30) DEFAULT NULL,
   `last_name` varchar(30) NOT NULL,
-  `dob` date NOT NULL,
+  `dob` date DEFAULT NULL,
   `staff_id` varchar(15) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `mobile` varchar(15) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(10) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(10) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -366,9 +364,67 @@ CREATE TABLE `pg_staff` (
 --
 
 INSERT INTO `pg_staff` (`row_id`, `title`, `fst_name`, `middle_name`, `last_name`, `dob`, `staff_id`, `email`, `mobile`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
-(10001, 'Mr.', 'Mrinmoy', NULL, 'Bandopadhya', '1997-09-05', '1', NULL, NULL, '0000-00-00 00:00:00', 0, '2017-09-08 21:06:20', 0),
-(10002, 'Mr.', 'Manomoy', NULL, 'Bandopadhya', '1997-09-05', '2', NULL, NULL, '0000-00-00 00:00:00', 0, '2017-09-08 21:06:20', 0),
-(10003, 'Mr.', 'Manomoy', NULL, 'Banerjee', '1997-09-05', '3', NULL, NULL, '0000-00-00 00:00:00', 0, '2017-09-08 21:06:20', 0);
+(10004, 'Dr.', 'Mrinal', 'Kanti', 'Chattopadhyay', NULL, '1', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10005, 'Dr.', 'Abira', 'Basu', 'Chakraborty', NULL, '2', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10006, 'Dr.', 'Ananda', 'dulal', 'Bagdi', NULL, '3', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10007, 'Dr.', 'Manjari', 'NULL', 'Sarkar(Basu)', NULL, '4', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10008, 'Sri', 'Subrata', 'NULL', 'Mondal', NULL, '5', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10009, 'Mrs.', 'Debarati', 'NULL', 'Ghosh', NULL, '6', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10010, 'Dr.', 'Jyostnasis', 'NULL', 'Ghosh', NULL, '7', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10011, 'Dr.', 'Birendra', 'Kumar', 'Haldar', NULL, '8', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10012, 'Sri', 'Atanu', 'NULL', 'Choudhury', NULL, '9', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10013, 'Sri', 'Ramendra', 'Nath', 'Roy', NULL, '10', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10014, 'Sri', 'Prabir', 'NULL', 'Dutta', NULL, '11', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10015, 'Smt.', 'Sanchita', 'NULL', 'Ghosh', NULL, '12', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10016, 'Smt.', 'Sashirekha', 'NULL', 'Sarkar', NULL, '13', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10017, 'Sri', 'Surajit', 'NULL', 'Das', NULL, '14', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10018, 'Dr.', 'Santwana', 'NULL', 'Mondal', NULL, '15', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10019, 'Sri', 'Jagannath', 'NULL', 'pal', NULL, '16', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10020, 'Sri', 'Swapan', 'NULL', 'Ghosh', NULL, '17', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10021, 'Sri', 'Avishek', 'NULL', 'Mondal', NULL, '18', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10022, 'Sri', 'Chandra', 'Tapan', 'pal', NULL, '19', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10023, 'Sri', 'Brajaraj', 'NULL', 'Pal', NULL, '20', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10024, 'Smt.', 'Tandra', 'NULL', 'Ghosh', NULL, '21', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10025, 'Mrs.', 'Amrita', 'NULL', 'Mitra', NULL, '22', NULL, NULL, '2017-12-13 10:38:09', 0, '2017-12-13 10:38:09', 0),
+(10026, 'Sri', 'Rataneswar', 'NULL', 'Acharya', NULL, '23', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10027, 'Mrs', 'Ratna', 'Singa', 'Roy (Acharya)', NULL, '24', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10028, 'Sri', 'Atanu', 'NULL', 'Bhattacharyya', NULL, '25', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10029, 'Sri', 'Chiranjit', 'NULL', 'Mondal', NULL, '26', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10030, 'Sri', 'Anup', 'Kumar', 'Panja', NULL, '27', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10031, 'Sri', 'Biswajit', 'NULL', 'Mitra', NULL, '28', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10032, 'Akbar', 'Mirza', 'NULL', '', NULL, '29', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10033, 'Sri', 'Debabrata', 'NULL', 'Ghosh', NULL, '30', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10034, 'Asraf', 'Ali', 'NULL', '', NULL, '31', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10035, 'Sri', 'Sumit', 'NULL', 'Kar', NULL, '32', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10036, 'Fazle', 'Elahi', 'NULL', '', NULL, '33', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10037, 'Fazle', 'Noor', 'NULL', '', NULL, '34', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10038, 'Smt.', 'Pratiti', 'NULL', 'Ghosh', NULL, '35', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10039, 'Sri', 'Barun', 'NULL', 'Mondal', NULL, '36', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10040, 'Dr.', 'Somnath', 'NULL', 'Chattopadhyay', NULL, '37', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10041, 'Sri', 'Tapan', 'Kumar', 'Mondal', NULL, '38', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10042, 'Smt.', 'Mousumi', 'NULL', 'Dutta', NULL, '39', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10043, 'Habibur', 'Rahaman', 'NULL', 'Chowdhury', NULL, '40', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10044, 'Sri', 'Achintya', 'NULL', 'Santra', NULL, '41', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10045, 'Sri', 'Prasanta', 'NULL', 'Adhikari', NULL, '42', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10046, 'Safikul', 'Alam', 'NULL', '', NULL, '43', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10047, 'Sri', 'Krishanu', 'NULL', '', NULL, '44', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10048, 'Sri', 'Goutam', 'NULL', 'Mandal', NULL, '45', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10049, 'Sri', 'Manabendra', 'NULL', 'Das', NULL, '46', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10050, 'Ms.', 'Aparna', 'NULL', 'Majumder', NULL, '47', NULL, NULL, '2017-12-13 10:38:10', 0, '2017-12-13 10:38:10', 0),
+(10051, 'Sri', 'Debendranath', 'NULL', 'Saha', NULL, '48', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10052, 'Sri', 'Tapas', 'Kumar', 'Ghosh', NULL, '49', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10053, 'Sri', 'Debendranath', 'NULL', 'Saha', NULL, '50', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10054, '', 'Tazul', 'NULL', 'Islam', NULL, '51', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10055, 'Sri', 'Digambar', 'Das', 'Thakur', NULL, '52', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10056, 'Syed', 'Mahmood', 'NULL', 'Ali', NULL, '53', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10057, 'Sri', 'Ajit', 'NULL', 'Hazra', NULL, '54', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10058, 'Smt.', 'Arpita', 'NULL', 'Sarkar (Roy Chowdhury)', NULL, '55', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10059, 'Sri', 'Ramesh', 'Chandra', 'Mondal', NULL, '56', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10060, 'Sri', 'Ujjwal', 'NULL', 'Mondal', NULL, '57', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10061, 'Sri', 'Jagannath', 'NULL', 'Nag', NULL, '58', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10062, 'Sri', 'Ratan', 'Kumar', 'Banerjee', NULL, '59', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10063, 'Sri', 'Abu', 'NULL', 'Bakkarr', NULL, '60', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0),
+(10064, 'Smt.', 'Madhumita', 'NULL', 'Saha', NULL, '61', NULL, NULL, '2017-12-13 15:31:48', 0, '2017-12-13 15:31:48', 0);
 
 -- --------------------------------------------------------
 
@@ -384,9 +440,9 @@ CREATE TABLE `pg_staff_payment` (
   `purpose` varchar(100) NOT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -409,9 +465,9 @@ CREATE TABLE `pg_student` (
   `old_student_id` varchar(15) DEFAULT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(10) NOT NULL,
-  `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(10) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_upd_by` int(11) NOT NULL DEFAULT '0',
   `blood_group` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -428,7 +484,8 @@ INSERT INTO `pg_student` (`row_id`, `title`, `fst_name`, `middle_name`, `last_na
 (10000006, 'MR.', 'Soujanya', 'Kumar', 'Sarkar', '2017-10-02', 'Male', '998889090900', 'SC', 0, NULL, 1, '2017-10-06 20:13:14', 0, '0000-00-00 00:00:00', 0, NULL),
 (10000007, 'MR.', 'Soujanya', '', 'Sarkar', '2017-10-01', 'Male', '998889090900', '', 0, NULL, 1, '2017-10-06 20:14:26', 0, '0000-00-00 00:00:00', 0, NULL),
 (10000008, 'MS.', 'Radha', 'rani', 'Dutta', '2017-10-01', 'Female', '123412341234', 'GENERAL', 1, NULL, 1, '2017-10-06 20:17:03', 0, '0000-00-00 00:00:00', 0, NULL),
-(10000047, 'MR.', 'Raju', '', 'Bag', '2017-10-04', 'Male', '', 'GENERAL', 0, NULL, 1, '2017-10-14 18:49:45', 0, '0000-00-00 00:00:00', 0, NULL);
+(10000047, 'MR.', 'Raju', '', 'Bag', '2017-10-04', 'Male', '', 'GENERAL', 0, NULL, 1, '2017-10-14 18:49:45', 0, '0000-00-00 00:00:00', 0, NULL),
+(10000050, 'MS.', 'Tanim', NULL, 'Jha', '2002-05-01', 'Female', '1212121212', 'ST', 0, '9900', 1, '2018-05-24 20:58:16', 0, '2018-05-24 20:58:16', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -445,12 +502,19 @@ CREATE TABLE `pg_student_address` (
   `addr_line_3` varchar(30) DEFAULT NULL,
   `state` varchar(30) NOT NULL,
   `pincode` varchar(6) DEFAULT NULL,
-  `active_flg` tinyint(1) NOT NULL,
+  `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pg_student_address`
+--
+
+INSERT INTO `pg_student_address` (`row_id`, `student_id`, `address_type`, `addr`, `addr_line_2`, `addr_line_3`, `state`, `pincode`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
+(1, 9900, 'PERMANENT', 'SASA', 'DSDS', 'AAS', 'SASSA', '1212', 1, '2018-05-24 21:21:02', 0, '2018-05-24 21:21:02', 0);
 
 -- --------------------------------------------------------
 
@@ -468,9 +532,9 @@ CREATE TABLE `pg_student_board` (
   `roll` varchar(15) DEFAULT NULL,
   `index_no` varchar(15) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -485,9 +549,9 @@ CREATE TABLE `pg_student_email` (
   `email` varchar(50) NOT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -496,7 +560,8 @@ CREATE TABLE `pg_student_email` (
 
 INSERT INTO `pg_student_email` (`row_id`, `student_id`, `email`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
 (1, 10000001, 'mpmanas@gmail.com', 0, '2017-10-07 23:38:40', 0, '2017-10-07 23:38:40', 0),
-(2, 10000001, 'mpmanas_patra2001@yahoo.com', 1, '2017-10-07 23:41:06', 0, '2017-10-07 23:41:06', 0);
+(2, 10000001, 'mpmanas_patra2001@yahoo.com', 1, '2017-10-07 23:41:06', 0, '2017-10-07 23:41:06', 0),
+(3, 9900, 'biswarup.ghodshal@gamil.cpom', 1, '2018-05-24 21:21:55', 0, '2018-05-24 21:21:55', 0);
 
 -- --------------------------------------------------------
 
@@ -511,9 +576,9 @@ CREATE TABLE `pg_student_emergency_contact` (
   `contact_no` varchar(15) NOT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -531,9 +596,9 @@ CREATE TABLE `pg_student_invoice` (
   `fee_id` int(11) NOT NULL,
   `paid_flg` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -541,8 +606,8 @@ CREATE TABLE `pg_student_invoice` (
 --
 
 INSERT INTO `pg_student_invoice` (`row_id`, `student_id`, `session_course_id`, `invoice_dt`, `name`, `fee_id`, `paid_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
-(37, 10000001, 1, '0000-00-00', 'Session Charge', 1, 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(38, 10000002, 1, '0000-00-00', 'Session Charge', 1, 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0);
+(46, 10000001, 1, '2017-11-22', 'Session Charge', 1, 1, '2017-11-22 15:04:26', 2, '2017-11-22 15:04:26', 2),
+(47, 10000002, 1, '2017-11-22', 'Session Charge', 1, 1, '2017-11-22 15:04:26', 2, '2017-11-22 15:04:26', 2);
 
 -- --------------------------------------------------------
 
@@ -563,9 +628,9 @@ CREATE TABLE `pg_student_invoice_item` (
   `payment_id` int(11) DEFAULT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -573,14 +638,10 @@ CREATE TABLE `pg_student_invoice_item` (
 --
 
 INSERT INTO `pg_student_invoice_item` (`row_id`, `invoice_id`, `item_id`, `name`, `amount`, `discount_category`, `discount`, `due_dt`, `paid_flg`, `payment_id`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
-(23, 35, 1, 'Admission Fee', 200, 'NA', 0, '2017-06-01', 0, NULL, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(24, 35, 2, 'Exam Fee', 100, 'OBC-A', 100, '2017-06-01', 0, NULL, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(25, 36, 1, 'Admission Fee', 200, 'NA', 0, '2017-06-01', 0, NULL, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(26, 36, 2, 'Exam Fee', 100, 'PH', 120, '2017-06-01', 1, NULL, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(27, 37, 1, 'Admission Fee', 200, 'NA', 0, '2017-06-01', 1, 40, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(28, 37, 2, 'Exam Fee', 100, 'OBC-A', 50, '2017-06-01', 1, 41, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(29, 38, 1, 'Admission Fee', 200, 'NA', 0, '2017-06-01', 1, 49, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(30, 38, 2, 'Exam Fee', 100, 'PH', 80, '2017-06-01', 1, 49, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0);
+(31, 46, 1, 'Admission Fee', 200, 'NA', 0, '2017-11-22', 1, 50, 1, '2017-11-22 15:04:26', 2, '2017-11-22 15:04:26', 2),
+(32, 46, 2, 'Exam Fee', 100, 'OBC-A', 100, '2017-11-22', 1, 50, 1, '2017-11-22 15:04:26', 2, '2017-11-22 15:04:26', 2),
+(33, 47, 1, 'Admission Fee', 200, 'NA', 0, '2017-11-22', 1, 51, 1, '2017-11-22 15:04:26', 2, '2017-11-22 15:04:26', 2),
+(34, 47, 2, 'Exam Fee', 100, 'PH', 120, '2017-11-22', 1, 51, 1, '2017-11-22 15:04:26', 2, '2017-11-22 15:04:26', 2);
 
 -- --------------------------------------------------------
 
@@ -597,9 +658,9 @@ CREATE TABLE `pg_student_marks` (
   `full_marks` int(5) NOT NULL,
   `pass_marks` int(5) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -614,9 +675,9 @@ CREATE TABLE `pg_student_mobile` (
   `mobile_num` varchar(10) NOT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -628,7 +689,8 @@ INSERT INTO `pg_student_mobile` (`row_id`, `student_id`, `mobile_num`, `active_f
 (1002, 10000001, '9564216736', 0, '2017-10-07 19:19:04', 0, '2017-10-07 19:19:04', 0),
 (1003, 10000001, '9564216736', 1, '2017-10-07 19:20:04', 0, '2017-10-07 19:20:04', 0),
 (1004, 10000001, '9432431147', 1, '2017-10-07 19:28:38', 0, '2017-10-07 19:28:38', 0),
-(1005, 10000001, '9432431147', 1, '2017-10-07 19:28:40', 0, '2017-10-07 19:28:40', 0);
+(1005, 10000001, '9432431147', 1, '2017-10-07 19:28:40', 0, '2017-10-07 19:28:40', 0),
+(1006, 10000003, '9830875590', 1, '2018-05-24 13:13:32', 0, '2018-05-24 13:13:32', 0);
 
 -- --------------------------------------------------------
 
@@ -641,15 +703,15 @@ CREATE TABLE `pg_student_payment` (
   `student_id` int(11) NOT NULL,
   `invoice_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
-  `payment_dt` int(11) NOT NULL,
-  `pay_mode` int(11) NOT NULL,
+  `payment_dt` date NOT NULL,
+  `pay_mode` varchar(10) NOT NULL,
   `bank_name` varchar(30) DEFAULT NULL,
   `cheque_number` varchar(15) DEFAULT NULL,
-  `active_flg` tinyint(1) NOT NULL,
+  `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -657,12 +719,8 @@ CREATE TABLE `pg_student_payment` (
 --
 
 INSERT INTO `pg_student_payment` (`row_id`, `student_id`, `invoice_id`, `amount`, `payment_dt`, `pay_mode`, `bank_name`, `cheque_number`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
-(39, 1000001, 37, 250, 2017, 0, NULL, NULL, 0, '2017-09-24 15:34:44', 0, '2017-09-24 15:34:44', 0),
-(40, 1000001, 37, 200, 2017, 0, NULL, NULL, 0, '2017-09-24 15:39:15', 0, '2017-09-24 15:39:15', 0),
-(41, 1000001, 37, 50, 2017, 0, NULL, NULL, 0, '2017-09-24 15:40:17', 0, '2017-09-24 15:40:17', 0),
-(47, 10000002, 38, 220, 2017, 0, NULL, NULL, 0, '2017-10-23 11:32:26', 0, '2017-10-23 11:32:26', 0),
-(48, 10000002, 38, 220, 2017, 0, NULL, NULL, 0, '2017-10-23 11:39:55', 0, '2017-10-23 11:39:55', 0),
-(49, 10000002, 38, 220, 2017, 0, NULL, NULL, 0, '2017-10-23 11:44:42', 0, '2017-10-23 11:44:42', 0);
+(50, 10000001, 46, 200, '2017-11-22', 'CASH', NULL, NULL, 1, '2017-11-22 15:31:42', 2, '2017-11-22 15:31:42', 2),
+(51, 10000002, 47, 180, '2017-12-06', 'CASH', NULL, NULL, 1, '2017-12-06 21:17:39', 2, '2017-12-06 21:17:39', 2);
 
 -- --------------------------------------------------------
 
@@ -677,9 +735,9 @@ CREATE TABLE `pg_student_ph` (
   `ph_num` varchar(10) NOT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -688,7 +746,10 @@ CREATE TABLE `pg_student_ph` (
 
 INSERT INTO `pg_student_ph` (`row_id`, `student_id`, `std_code`, `ph_num`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
 (100001, 10000001, '033', '25266486', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(100002, 10000001, '033', '25266486', 0, '2017-10-07 23:27:30', 0, '2017-10-07 23:27:30', 0);
+(100002, 10000001, '033', '25266486', 0, '2017-10-07 23:27:30', 0, '2017-10-07 23:27:30', 0),
+(100003, 10000003, '033', '24455667', 1, '2018-05-24 13:20:01', 0, '2018-05-24 13:20:01', 0),
+(100004, 9900, '033', '24416745', 1, '2018-05-24 21:28:34', 0, '2018-05-24 21:28:34', 0),
+(100005, 9900, '033', '12121212', 1, '2018-05-24 21:31:24', 0, '2018-05-24 21:31:24', 0);
 
 -- --------------------------------------------------------
 
@@ -701,10 +762,10 @@ CREATE TABLE `pg_student_photo` (
   `student_id` int(11) NOT NULL,
   `filename` varchar(30) NOT NULL,
   `active_flg` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `last_upd_dt` datetime DEFAULT NULL,
+  `last_upd_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -723,9 +784,21 @@ INSERT INTO `pg_student_photo` (`row_id`, `student_id`, `filename`, `active_flg`
 (13, 10000002, '10000002_logo.png', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (14, 10000001, '10000001_3_GEMS.jpg', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (15, 10000002, '10000002_Painting by Mick.jpg', 0, '0000-00-00 00:00:00', 0, '2017-10-15 00:56:45', 0),
-(16, 10000003, '10000003_logo.png', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(17, 10000002, '10000002_GEMS.jpg', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(18, 10000004, '10000004_Painting by Mick.jpg', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0);
+(16, 10000003, '10000003_logo.png', 0, '0000-00-00 00:00:00', 0, '2018-05-24 13:04:04', 4),
+(17, 10000002, '10000002_GEMS.jpg', 0, '0000-00-00 00:00:00', 0, '2017-12-20 13:35:56', 2),
+(18, 10000004, '10000004_Painting by Mick.jpg', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
+(27, 0, 'Hydrangeas_10000003.jpg', 0, '2017-12-20 13:08:43', 2, '2017-12-20 13:11:28', 2),
+(28, 0, 'Koala_10000003.jpg', 0, '2017-12-20 13:11:28', 2, '2017-12-20 13:13:56', 2),
+(29, 0, 'Desert_10000003.jpg', 0, '2017-12-20 13:13:56', 2, '2017-12-20 13:25:57', 2),
+(30, 0, 'Lighthouse_10000002.jpg', 0, '2017-12-20 13:25:57', 2, '2017-12-20 13:30:12', 2),
+(31, 0, 'Favs_10000002.jpg', 0, '2017-12-20 13:30:12', 2, '2017-12-20 13:31:49', 2),
+(32, 0, 'Favs_10000002.jpg', 0, '2017-12-20 13:31:49', 2, '2017-12-20 13:33:56', 2),
+(33, 0, 'query1_10000002.jpg', 1, '2017-12-20 13:33:56', 2, NULL, NULL),
+(34, 10000002, '.', 0, '2017-12-20 13:35:56', 2, '2017-12-20 13:36:07', 2),
+(35, 10000002, 'Jellyfish_10000002.jpg', 0, '2017-12-20 13:36:07', 2, '2017-12-20 13:37:04', 2),
+(36, 10000002, 'Desert_10000002.jpg', 1, '2017-12-20 13:37:04', 2, NULL, NULL),
+(37, 10000047, 'indra_10000047.jpg', 1, '2018-01-02 13:05:26', 2, NULL, NULL),
+(38, 10000003, 'Adhaar_10000003.jpg', 1, '2018-05-24 13:04:04', 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -741,9 +814,9 @@ CREATE TABLE `pg_student_relation` (
   `contact_no` varchar(15) NOT NULL,
   `dob` date NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -757,9 +830,9 @@ CREATE TABLE `pg_subject` (
   `name` varchar(50) NOT NULL,
   `subject_code` varchar(10) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -787,10 +860,17 @@ CREATE TABLE `pg_vendor` (
   `pincode` int(7) NOT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pg_vendor`
+--
+
+INSERT INTO `pg_vendor` (`row_id`, `name`, `mobile`, `email`, `registration_number`, `ph`, `address`, `pincode`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
+(1, 'P.G.INFOSERVICES', '9830875590', 'pginfoservices@yahoo.com', 'AM12345', '03365003045', 'Kestopur, Kolkata', 700101, 1, '2017-11-22 00:00:00', 1, '2017-11-22 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -802,14 +882,75 @@ CREATE TABLE `pg_vendor_payment` (
   `row_id` int(11) NOT NULL,
   `vendor_id` int(11) NOT NULL,
   `amount` int(6) NOT NULL,
+  `payment_type` varchar(30) NOT NULL,
   `payment_dt` date NOT NULL,
   `purpose` varchar(100) NOT NULL,
   `active_flg` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
   `last_upd_dt` datetime NOT NULL,
-  `last_upd_by` int(11) NOT NULL
+  `last_upd_by` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pg_vendor_payment`
+--
+
+INSERT INTO `pg_vendor_payment` (`row_id`, `vendor_id`, `amount`, `payment_type`, `payment_dt`, `purpose`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by`) VALUES
+(1, 1, 300, 'Sports', '2017-11-23', 'Sports', 1, '2017-11-23 17:36:35', 2, '2017-11-23 17:36:35', 2),
+(2, 1, 3000, 'Lab Equipments', '2017-11-23', 'Lab Equipments', 1, '2017-11-23 17:37:36', 2, '2017-11-23 17:37:36', 2),
+(3, 1, 4500, 'Stationery', '2017-11-23', 'Stationery', 1, '2017-11-23 17:39:16', 2, '2017-11-23 17:39:16', 2),
+(4, 10003, 3000, 'Stationery', '2017-12-06', 'Stationery', 1, '2017-12-06 21:21:25', 2, '2017-12-06 21:21:25', 2),
+(5, 10003, 1200, 'Stationery', '2017-12-06', 'Stationery', 1, '2017-12-06 21:24:47', 2, '2017-12-06 21:24:47', 2),
+(6, 10010, 2300, 'Lab Equipments', '2017-12-18', 'Lab Equipments', 1, '2017-12-18 17:26:52', 2, '2017-12-18 17:26:52', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `staff_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(100) NOT NULL,
+  `desiganition` varchar(100) NOT NULL,
+  `qualification` varchar(100) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `is_deleted` enum('Y','N') NOT NULL DEFAULT 'N'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_id`, `name`, `desiganition`, `qualification`, `created_on`, `is_deleted`) VALUES
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:28:19', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:37:48', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:42:09', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:42:26', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:42:55', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:43:26', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:44:00', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:44:27', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:44:56', 'Y'),
+(0, 'Biswarup Ghoshal', 'Accountant', 'B.A Hons.', '2017-11-23 23:45:25', 'Y'),
+(0, 'Sri Debendranath Saha', 'Cashier', 'B.Com, Computer (Diploma)', '2017-11-30 23:08:14', 'Y'),
+(0, 'Sri Tapas Kumar Ghosh', 'Accountant', 'M.A, B.Ed', '2017-11-30 23:10:02', 'Y'),
+(0, 'Sri Tapas Kumar Ghosh', 'Accountant', 'M.A. , B.Ed', '2017-12-04 14:23:05', 'N'),
+(0, 'Sri Debendranath Saha', 'Cashier', 'B.Com', '2017-12-04 14:24:09', 'N'),
+(0, 'Tazul Islam', 'Clerk', 'Madhyamik', '2017-12-04 14:24:49', 'N'),
+(0, 'Sri Digambar Das Thakur', 'Peon', 'Higher Secondary', '2017-12-04 14:38:26', 'N'),
+(0, 'Syed Mahmood Ali', 'Lab Attendant (Geography)', 'Higher Secondary', '2017-12-04 14:42:29', 'N'),
+(0, 'Sri Ajit Hazra', 'Guard', '8th Standard', '2017-12-04 14:44:08', 'N'),
+(0, 'Smt. Arpita Sarkar (Roy Chowdhury)', 'Lady Attendant', 'B.A. (Hons.)', '2017-12-04 14:45:42', 'N'),
+(0, 'Sri Ramesh Chandra Mondal', 'Peon', 'Higher Secondary', '2017-12-04 14:46:28', 'N'),
+(0, 'Sri Ujjwal Mondal', 'Guard', 'Madhyamik', '2017-12-04 14:46:56', 'N'),
+(0, 'Sri Jagannath Nag', 'Electrician cum Care-taker', 'B.A. (Hons.)', '2017-12-04 14:48:38', 'N'),
+(0, 'Sri Ratan Kumar Banerjee', 'Lab Attendant', 'B. Com (Hons.)', '2017-12-04 14:50:47', 'N'),
+(0, 'Sri Abu Bakkarr', 'Sweeper (Part-time)', '8th Standard', '2017-12-04 14:52:03', 'N'),
+(0, 'Smt. Madhumita Saha', 'Karmabandhu (Part-time)', '8th Standard', '2017-12-04 14:53:19', 'N'),
+(0, 'Sri Buddhadeb Chattopadhyay', 'Clerk (Contractual)', 'B.Com', '2017-12-04 14:56:26', 'N'),
+(0, 'Sri Ranabir Mandal', 'Clerk (Contractual)', 'M.A., B.L.I.S', '2017-12-04 14:57:43', 'N');
 
 -- --------------------------------------------------------
 
@@ -850,6 +991,83 @@ INSERT INTO `student_master` (`patient_id`, `GENDER`, `user_first_name`, `user_l
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teaching_department`
+--
+
+CREATE TABLE `teaching_department` (
+  `teaching_department_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `desiganition` varchar(100) NOT NULL,
+  `qualification` varchar(100) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `is_deleted` enum('Y','N') NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teaching_department`
+--
+
+INSERT INTO `teaching_department` (`teaching_department_id`, `name`, `desiganition`, `qualification`, `created_on`, `is_deleted`) VALUES
+(1, 'Mrinal kanti Chattopadhyay', 'Principal', 'Ph.D', '2016-01-17 22:13:33', 'Y'),
+(2, 'FGFDFD', 'jdgdgh', 'hfhfhf', '2016-01-19 01:21:08', 'Y'),
+(3, 'jyostnasis ghosh', 'Asst Prof', 'Ph.D', '2016-03-12 15:44:34', 'Y'),
+(4, 'Dr. Mrinal Kanti Chattopadhyay', 'Principal', 'M.A, Ph.D', '2016-03-19 11:51:23', 'N'),
+(5, 'Dr. Abira Basu Chakraborty', 'Asst. Prof. in History (in lien)', 'M.A, Ph.D', '2016-03-19 11:52:21', 'N'),
+(6, 'Mrs. Kasturi Joddar', 'Asst. Prof. in English (in lien)', 'M.A', '2016-03-19 11:52:58', 'Y'),
+(7, 'Dr. Ananda dulal Bagdi', 'Asst. Prof. in Bengali', 'M.A, B.Ed, Ph.D', '2016-03-19 11:55:00', 'N'),
+(8, 'Dr. Manjari Sarkar(Basu) ', 'Asst. Prof. in Geography', 'M.A, Ph.D', '2016-03-19 11:55:39', 'N'),
+(9, 'Sri Subrata Mondal', 'Asst. Prof. in Bengali', 'M.A', '2016-03-19 11:56:04', 'N'),
+(10, 'Mrs. Debarati Ghosh', 'Asst. Prof. in English', 'M.A, M.Phil', '2016-03-19 11:56:33', 'N'),
+(11, 'Dr. Jyostnasis Ghosh', 'Asst. Prof. in Physical Education', 'M.P.E, M.Phil, Ph.D', '2016-03-19 11:57:26', 'N'),
+(12, 'Dr. Birendra Kumar Haldar', 'Asst. Prof. in Sanskrit', 'M.A, Ph.D', '2016-03-19 11:57:57', 'N'),
+(13, 'Sri Atanu Choudhury', 'C.W.T.T in Geography', 'M.A, B.Ed', '2016-03-19 11:58:45', 'Y'),
+(14, 'Sri Ramendra Nath Roy', 'P.T.T (Govt. Approved) in Economics', 'M.A', '2016-03-19 11:59:44', 'Y'),
+(15, 'Sri Atanu Choudhury', 'C.W.T.T in Geography (Govt. Approved)', 'M.A', '2016-03-19 12:01:26', 'N'),
+(16, 'Sri Ramendra Nath Roy', 'P.T.T  in Economics (Govt. Approved)', 'M.A', '2016-03-19 12:02:03', 'N'),
+(17, 'Sri Prabir Dutta', 'P.T.T  in Bengali (Govt. Approved)', 'M.A', '2016-03-19 12:02:57', 'N'),
+(18, 'Smt. Sanchita Ghosh', 'P.T.T  in Bengali (Govt. Approved)', 'M.A', '2016-03-19 12:03:21', 'N'),
+(19, 'Smt. Sashirekha Sarkar', 'P.T.T  in Sanskrit (Govt. Approved)', 'M.A', '2016-03-19 12:03:53', 'N'),
+(20, 'Sri Surajit Das', 'P.T.T  in Physical education (Govt. Approved)', 'M.P.E', '2016-03-19 12:04:23', 'N'),
+(21, 'Dr.  Santwana Mondal', 'P.T.T  in Physical education (Govt. Approved)', 'M.P.E, Ph.D', '2016-03-19 12:05:14', 'N'),
+(22, 'Sri Jagannath pal', 'P.T.T  in Geography (Govt. Approved)', 'M.A', '2016-03-19 12:05:40', 'N'),
+(23, 'Smt. Swapan Ghosh', 'P.T.T  in History (Govt. Approved)', 'M.A', '2016-03-19 12:06:02', 'Y'),
+(24, 'Sri Swapan Ghosh', 'P.T.T  in History (Govt. Approved)', 'M.A', '2016-03-19 12:06:47', 'N'),
+(25, 'Sri Avishek Mondal', 'P.T.T  in History (Govt. Approved)', 'M.A', '2016-03-19 12:08:11', 'N'),
+(26, 'Sri Chandra Tapan pal', 'P.T.T  in English (Govt. Approved)', 'M.A', '2016-03-19 12:08:48', 'N'),
+(27, 'Sri Brajaraj Pal', 'P.T.T  in English (Govt. Approved)', 'M.A', '2016-03-19 12:09:18', 'N'),
+(28, 'Smt. Tandra Ghosh', 'P.T.T  in Philosophy (Govt. Approved)', 'M.A', '2016-03-19 12:09:45', 'N'),
+(29, 'Mrs. Amrita Mitra', 'P.T.T  in Philosophy  (Govt. Approved)', 'M.A', '2016-03-19 12:10:34', 'N'),
+(30, 'Sri Rataneswar Acharya', 'Guest Lecturer in Sanskrit', 'M.A, B.Ed', '2016-03-19 12:11:44', 'N'),
+(31, 'Mrs Ratna Singa Roy (Acharya)', 'Guest Lecturer in Sanskrit', 'M.A', '2016-03-19 12:12:11', 'N'),
+(32, 'Sri Atanu Bhattacharyya', 'Guest Lecturer in Sanskrit', 'M.A', '2016-03-19 12:13:06', 'N'),
+(33, 'Sri Chiranjit Mondal', 'Guest Lecturer in Sanskrit', 'M.A', '2016-03-19 12:13:30', 'N'),
+(34, 'Sri Anup Kumar Panja', 'Guest Lecturer in Political Science', 'M.A', '2016-03-19 12:14:04', 'N'),
+(35, 'Sri Arnab Mallick', 'Guest Lecturer in Bengali', 'M.A', '2016-03-19 12:14:26', 'Y'),
+(36, 'Sri Biswajit Mitra', 'Guest Lecturer in History', 'M.A', '2016-03-19 12:14:52', 'N'),
+(37, 'Akbar Mirza', 'Guest Lecturer in History', 'M.A', '2016-03-19 12:15:26', 'N'),
+(38, 'Asraful Alam', 'Guest Lecturer in Geography', 'M.A', '2016-03-19 12:16:00', 'Y'),
+(39, 'Sri Debabrata Ghosh', 'Guest Lecturer in Geography', 'M.A', '2016-03-19 12:16:23', 'N'),
+(40, 'Asraf Ali', 'Guest Lecturer in Geography', 'M.A', '2016-03-19 12:17:14', 'N'),
+(41, 'Sri Sumit Kar', 'Guest Lecturer in Geography', 'M.A', '2016-03-19 12:18:13', 'N'),
+(42, 'Fazle  Elahi', 'Guest Lecturer in Geography', 'M.A', '2016-03-19 12:18:47', 'N'),
+(43, 'Fazle Noor', 'Guest Lecturer in English', 'M.A', '2016-03-19 12:20:24', 'N'),
+(44, 'Smt. Pratiti Ghosh', 'Guest Lecturer in English', 'M.A', '2016-03-19 12:20:43', 'N'),
+(45, 'Sri Barun Mondal', 'Asst. Prof. in Philosophy', 'M.A', '2017-03-29 14:37:42', 'N'),
+(46, 'Dr. Somnath Chattopadhyay', 'Asst. Prof. in Economics', 'M.Sc, Ph.D', '2017-03-29 14:38:24', 'N'),
+(47, 'Sri Tapan Kumar Mondal', 'Asst. Prof. in History', 'M.A', '2017-03-29 14:38:53', 'N'),
+(48, 'Smt. Mousumi Dutta', 'Guest Lecturer in Education', 'M.A', '2017-03-29 14:39:58', 'N'),
+(49, 'Habibur Rahaman Chowdhury', 'Guest Lecturer in Education', 'M.A', '2017-03-29 14:41:03', 'N'),
+(50, 'Sri Achintya Santra', 'Guest Lecturer in Education', 'M.A', '2017-03-29 14:41:34', 'N'),
+(51, 'Sri Prasanta Adhikari', 'Guest Lecturer in Political Science', 'M.A', '2017-03-29 14:42:17', 'N'),
+(52, 'Safikul Alam', 'Guest Lecturer in Mass Communication & Journalism', 'M.A', '2017-03-29 14:43:20', 'N'),
+(53, ' Sri  Krishanu Adhikari', 'Assistant Professor in English', 'M.A, M. Phil', '2017-11-10 15:17:46', 'N'),
+(54, 'Sri Goutam Mandal', 'Assistant Professor in Bengali', 'M.A', '2017-11-10 15:18:16', 'N'),
+(55, 'Sri Manabendra Das', 'Assistant Professor in Geography', 'M.A', '2017-11-10 15:18:47', 'N'),
+(56, 'Ms. Aparna Majumder', 'Guest Lecturer in Mass Communication & Journalism', 'M.A', '2017-11-17 18:33:13', 'N');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -859,9 +1077,9 @@ CREATE TABLE `user` (
   `user_full_name` varchar(200) NOT NULL,
   `user_password` varchar(60) NOT NULL,
   `role` enum('ADMIN','ACCOUNTS','PRINCIPAL','STUDENT','PROFESSOR','GUEST') NOT NULL,
-  `date_added` datetime NOT NULL,
-  `created_by_user_id` int(11) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by_user_id` int(11) DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `isSync` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -870,16 +1088,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_full_name`, `user_password`, `role`, `date_added`, `created_by_user_id`, `create_date`, `isSync`) VALUES
-(1, 'mrinalkantee', 'Dr. Mrinal Kanti Chattopadhay', 'c7a85972e188c669f0d1e24528a772a3', 'PRINCIPAL', '2012-06-11 15:42:40', 0, '0000-00-00 00:00:00', 0),
+(1, 'mrinalkantee', 'Dr. Mrinal Kanti Chattopadhay', '201f00b5ca5d65a1c118e5e32431514c', 'PRINCIPAL', '2012-06-11 15:42:40', 0, '0000-00-00 00:00:00', 0),
 (2, 'jghosh', 'Mr. Jyosthnasish Ghosh', 'c7a85972e188c669f0d1e24528a772a3', 'PROFESSOR', '2012-06-11 15:42:40', 0, '0000-00-00 00:00:00', 0),
 (3, 'bghos', 'Mr. Biswarup Ghoshal', 'c7a85972e188c669f0d1e24528a772a3', 'ACCOUNTS', '0000-00-00 00:00:00', 0, '2017-08-18 15:41:50', 0),
-(4, 'mpmanas', 'Manas Patra', 'c7a85972e188c669f0d1e24528a772a3', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
+(4, '10000003', 'Manas Patra', '201f00b5ca5d65a1c118e5e32431514c', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (5, 'kpke', 'keya patra', 'c7a85972e188c669f0d1e24528a772a3', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (6, 'rk', 'radha kundu', 'bd8efa321bb3e6497d055e92ea0ac0d4', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (7, 'spatra', 'soumik patra', 'c7a85972e188c669f0d1e24528a772a3', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (8, 'bghkhl', 'biswa gh', 'c7a85972e188c669f0d1e24528a772a3', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
 (9, 'kjgdh', 'subha dull', 'c7a85972e188c669f0d1e24528a772a3', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(10, ',jhgk', 'hjkk kuio', 'da81aab2c29568a5d8a35077d8a59917', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0);
+(10, ',jhgk', 'hjkk kuio', 'da81aab2c29568a5d8a35077d8a59917', 'STUDENT', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
+(11, '9900', 'Tanim Jha', '201f00b5ca5d65a1c118e5e32431514c', 'STUDENT', '2018-05-24 20:58:16', NULL, '2018-05-24 15:28:16', 0);
 
 --
 -- Indexes for dumped tables
@@ -1170,7 +1389,7 @@ ALTER TABLE `pg_specialisation`
 -- AUTO_INCREMENT for table `pg_staff`
 --
 ALTER TABLE `pg_staff`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10004;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10065;
 --
 -- AUTO_INCREMENT for table `pg_staff_payment`
 --
@@ -1180,12 +1399,12 @@ ALTER TABLE `pg_staff_payment`
 -- AUTO_INCREMENT for table `pg_student`
 --
 ALTER TABLE `pg_student`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000048;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000051;
 --
 -- AUTO_INCREMENT for table `pg_student_address`
 --
 ALTER TABLE `pg_student_address`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pg_student_board`
 --
@@ -1195,7 +1414,7 @@ ALTER TABLE `pg_student_board`
 -- AUTO_INCREMENT for table `pg_student_email`
 --
 ALTER TABLE `pg_student_email`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pg_student_emergency_contact`
 --
@@ -1205,12 +1424,12 @@ ALTER TABLE `pg_student_emergency_contact`
 -- AUTO_INCREMENT for table `pg_student_invoice`
 --
 ALTER TABLE `pg_student_invoice`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `pg_student_invoice_item`
 --
 ALTER TABLE `pg_student_invoice_item`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `pg_student_marks`
 --
@@ -1220,22 +1439,22 @@ ALTER TABLE `pg_student_marks`
 -- AUTO_INCREMENT for table `pg_student_mobile`
 --
 ALTER TABLE `pg_student_mobile`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
 --
 -- AUTO_INCREMENT for table `pg_student_payment`
 --
 ALTER TABLE `pg_student_payment`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `pg_student_ph`
 --
 ALTER TABLE `pg_student_ph`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100003;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100006;
 --
 -- AUTO_INCREMENT for table `pg_student_photo`
 --
 ALTER TABLE `pg_student_photo`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `pg_student_relation`
 --
@@ -1250,18 +1469,17 @@ ALTER TABLE `pg_subject`
 -- AUTO_INCREMENT for table `pg_vendor`
 --
 ALTER TABLE `pg_vendor`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pg_vendor_payment`
 --
 ALTER TABLE `pg_vendor_payment`
-  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `row_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;COMMIT;
-
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

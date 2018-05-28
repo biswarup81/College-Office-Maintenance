@@ -18,9 +18,9 @@ include '../classes/admin_class.php';
 				values('$student_id','$addr_type','$addr', '$addr2', '$addr3', '$state', '$pincode' )";
 				mysql_query($sql1) or die(mysql_error());
 			
-
+				$url = "student_details.php?student_id=".$student_id;
 				
-				echo "Address for $student_id is recorded successfully. <a class='btn btn-primary' href='./index_login.php'>Login Now !!</a>";
+				echo "Address for  for $student_id is recorded successfully. <a class='btn btn-primary' href='".$url."'>Back</a>";
 				
 			//}
 		

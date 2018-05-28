@@ -1,22 +1,19 @@
 <?php include_once "./inc/datacon.php";
-include_once "./inc/header.php"; 
+include_once "./inc/header.php"; ?>
 
-if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
-?>
 
-    <?php include './inc/dashboard_topnav.php'; ?>
 
     <div class="container-fluid">
       <div class="row">
-        <?php include './inc/dashboard_sidenav.php'; ?>
+        
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Add Student</h1>
+          <h1 class="page-header">Register</h1>
 
           <div class="row">
           <div class="col-md-12">
 <form id="create_user_form" class="form-horizontal" >
 <input type="hidden" name="role" id="role" value="STUDENT"  >
-			<div class="alert alert-danger" role="alert" id="search_alert_u" hidden="true">
+			<div class="alert alert-danger" role="alert" id="search_alert_2" hidden="true">
 			
 			</div>
 			<div class="form-group">
@@ -33,19 +30,30 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 			<div class="form-group">
 			<label for="fname" class="col-sm-2 control-label">First Name</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name">
+			<input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name" required>
 			</div>
 			</div>
 			<div class="form-group">
 			<label for="lname" class="col-sm-2 control-label">Last Name</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last Name">
+			<input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last Name" required>
+			</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-2 control-label">Category</label>
+			<div class="col-sm-2">
+			<select class="form-control" name="category" id="category">
+			<option value="0">--SELECT--</option>
+			<option value="Gen">General</option>
+			<option value="SC">SC</option>
+			<option value="ST">ST</option>
+			</select>
 			</div>
 			</div>
 			<div class="form-group">
 			<label for="uid" class="col-sm-2 control-label">College Roll</label>
 			<div class="col-sm-4">
-			<input type="text" class="form-control" name="uid" id="uid" placeholder="Enter userid">
+			<input type="text" class="form-control" name="uid" id="uid" placeholder="Enter userid" required>
 			</div>
 			</div>
 			<div class="form-group">
@@ -61,46 +69,29 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 			</div>
 			</div>
 			<div class="form-group">
+			<label for="cellnum" class="col-sm-2 control-label">Adhaar number</label>
+			<div class="col-sm-6">
+			<input type="text" class="form-control" name="aadhaar_no" id="aadhaar_no" placeholder="Enter Adhaar number">
+			</div>
+			</div>
+			<div class="form-group">
 			<label for="cellnum" class="col-sm-2 control-label">Mobile number</label>
 			<div class="col-sm-6">
-			<input type="tel" class="form-control" name="cellnum" id="cellnum" placeholder="Enter Mobile number">
+			<input type="tel" class="form-control" name="mobile_no" id="mobile_no" placeholder="Enter Mobile number">
 			</div>
 			</div>
-			<div class="form-group">
-			<label for="altcellnum" class="col-sm-2 control-label">Landline number</label>
-			<div class="col-sm-6">
-			<input type="tel" class="form-control" name="altcellnum" placeholder="Enter Landline number">
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="lname" class="col-sm-2 control-label">Street Address</label>
-			<div class="col-sm-6">
 			
-			<textarea class="form-control" name="addr" placeholder="Enter Address"></textarea>
 			
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="lname" class="col-sm-2 control-label">City/Town</label>
-			<div class="col-sm-6">
-			<input type="text" class="form-control" name="city" placeholder="Enter City/Town">
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="lname" class="col-sm-2 control-label">E-Mail</label>
-			<div class="col-sm-6">
-			<input type="email" class="form-control" name="email" placeholder="Enter E-Mail">
-			</div>
-			</div>
+			
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-			<input type="button" id="add_by_user" class="btn btn-default"  value="ADD" name="ADD" >
+			<input type="button" id="register_user" class="btn btn-default"  value="ADD" name="ADD" >
 			</div>
 			</div>
 			</form>
 			<!--END of form-->
 			<div class="alert alert-info" role="alert" id="create_u_result" hidden="true">
-			
+
 			</div>
 			</div>
           </div>
@@ -111,8 +102,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
       </div>
     </div>
 
-   <?php } else { echo "You are not authorized to perform any operation. Close the browser and signin again"; }
-   include_once './inc/footer.php';?>
+   <?php  include_once './inc/footer.php';?>
   </body>
 </html>
 			

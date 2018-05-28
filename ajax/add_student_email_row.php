@@ -14,8 +14,8 @@ include '../classes/admin_class.php';
 				mysql_query($sql1) or die(mysql_error());
 			
 
-				
-				echo "Email Address $email for $student_id is recorded successfully. <a class='btn btn-primary' href='./add_student_addr.php?student_id=".$student_id."'>Add Address Now !!</a> or . <a class='btn btn-primary' href='./student_details.php?student_id=".$student_id."'>View Student Details !!</a>";
+				$url = "student_details.php?student_id=".$student_id;
+				echo "Email Address for $student_id is recorded successfully. <a class='btn btn-primary' href='".$url."'>Back</a>";
 				
 			//}
 		

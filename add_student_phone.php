@@ -39,6 +39,11 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 			<input type="button" id="add_by_student_ph" class="btn btn-default"  value="ADD" name="ADD" >
+			<?php if ( isset($_SESSION['STUDENT_ID'])) {
+            		$student_id = $_SESSION['STUDENT_ID'];
+            		$url = "student_details.php?student_id=".$student_id;
+            		?> <a class="btn btn-default" href="<?php echo $url;?>">Back</a>
+            	<?php }?>
 			</div>
 			</div>
 			</form>
