@@ -20,11 +20,13 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 		              <thead>
 							<tr>
 								<th>Student Id</th>
-								<th>Name</th>	
-								
+								<th>Title</th>	
+								<th>First Name</th>
+								<th>Middle Name</th>
+								<th>Last Name</th>
 								<th>Date Of Birth</th>
 								<th>Category</th>
-								<!--  <th>Old Student Id</th> -->
+								<th>Old Student Id</th>
 								<th>Active</th>
 								
 								
@@ -37,15 +39,17 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 FROM pg_student a");
     $count = 1;
     while ($row = mysql_fetch_array($result)) {
-    		
-
+        
         ?>
 							<tr>
-								<td><?php echo "<a href=student_details.php?student_id=". $row['old_student_id'].">".$row['old_student_id']."</a>"; ?></td>
-								<td><?php echo $row['title']." ".$row['fst_name']." ".$row['middle_name']. " ".$row['last_name']; ?></td>
+								<td><?php echo "<a href=student_details.php?student_id=". $row['row_id'].">".$row['row_id']."</a>"; ?></td>
+								<td><?php echo $row['title']; ?></td>
+								<td><?php echo $row['fst_name']; ?></td>
+								<td><?php echo $row['middle_name']; ?></td>
+								<td><?php echo $row['last_name']; ?></td>
 								<td><?php echo date("d / m / Y", strtotime($row['dob'])); ?></td>
 								<td><?php echo $row['category']; ?></td>
-								<!--  td><?php echo $row['old_student_id']; ?></td-->
+								<td><?php echo $row['old_student_id']; ?></td>
 								<td><?php if($row['active_flg']) echo "Y"; else echo "N"; ?></td>
 							</tr>
     <?php

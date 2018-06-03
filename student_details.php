@@ -54,10 +54,10 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 	      $state= "";
 	      $pincode= "";
 	      $email = "";
-	      $filename = "";
+	      $filename = "";	      $category = "";
 	      
 			/* Profile */
-			$sql1 = "SELECT a.row_id, a.title, a.fst_name, a.last_name, a.dob, a.active_flg, b.filename, a.old_student_id, a.gender
+			$sql1 = "SELECT a.row_id, a.title, a.fst_name, a.last_name, a.dob, a.active_flg, b.filename, a.old_student_id, a.gender, a.category
 			FROM pg_student a left outer join pg_student_photo b on a.row_id = b.student_id where a.row_id = ".$student_id." 
 			 and ifnull(b.active_flg, 1) = 1";
 			//echo "<div>".$sql1."</div>";
@@ -66,9 +66,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 			while ($row = mysql_fetch_array($result)) {
 			  	$old_student_id = $row['old_student_id'];
 		    	$name = $row['fst_name']." ".$row['last_name'];
-		    	if ($dob != "") {$dob = strtotime($row['dob']);}
+		    	if ($dob == "") {$dob = strtotime($row['dob']);}
 		    	$active = $row['active_flg'];
-			    $gender =  $row['active_flg'];
+		    	$category =  $row['category'];
 			    $filename = $row['filename'];
 			    $gender= $row['gender'];
 			    $count = $count + 1;       
@@ -117,10 +117,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
     		$sql1 = "SELECT `row_id`, `student_id`, `invoice_id`, `amount`, `payment_dt`, `pay_mode`, `bank_name`, `cheque_number`, `active_flg`, `created`, `created_by`, `last_upd_dt`, `last_upd_by` FROM `pg_student_payment` WHERE student_id = ".$student_id."
 			 		and ifnull(active_flg, 1) = 1";
     		$result_payment = mysql_query($sql1)  or die(mysql_error());
-	    		
-    		
-    		
-    ?>
+    		/* Admission */    		$sql1 = "SELECT h.name as course, f.promo_retained as passed, s.name as session FROM pg_student a inner  join pg_session_course_student f on a.row_id = f.student_id left  join pg_session_course g on f.session_course_id = g.row_id left  join pg_course h on g.course_id = h.row_id " .        		"left  join pg_session s on g.session_id = s.row_id where a.row_id = " . $student_id . " and ifnull(f.active_flg, 1) = 1 order by s.row_id desc";    		    		$result_adm = mysql_query($sql1)  or die(mysql_error());    		    		/* Education */    		$sql1 = "select a.row_id, b.board_name, b.level, d.name as subject, marks from pg_student a inner join pg_student_board b on a.row_id =b.student_id left join pg_student_marks c on b.row_id = c.std_board_id left outer join pg_subject d on c.subject_id = d.row_id" .    		" where a.row_id = " . $student_id . " order by b.level desc";    		    		$result_edu = mysql_query($sql1)  or die(mysql_error());    ?>
     
     
       <div class="row">
@@ -144,10 +141,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 							<tr><td>Gender</td><td><?php echo $gender; ?></td></tr>
 							<tr><td>ID</td><td><?php echo $old_student_id; ?></td></tr>
 							
-							<tr><td>DOB</td><td><?php if ($dob != ""){echo date("d / m / Y", $dob);} ?></td></tr>
-							
-							
-							<tr><td>Active</td><td><?php if($active) echo "Y"; else echo "N"; ?></td></tr>
+							<tr><td>DOB</td><td><?php if ($dob != ""){echo date("d/m/y", $dob);} ?></td></tr>							<tr><td>Category</td><td><?php echo $category; ?></td></tr>
 		              </tbody>
 					</table>
 				</div>
@@ -163,11 +157,11 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 								<tr><td colspan="2"><?php echo $addr ?></td></tr>
 								<tr><td colspan="2"><?php echo $state . " - ". $pincode?></td></tr>
 								<?php } else {?>
-								<tr><td colspan="2" align="center">No Address info</td></tr>
+								<tr><td colspan="2" align="center">No Address. <a class="btn btn-warning" href=<?php echo "add_student_addr.php?student_id=".$student_id?> role="button">Add Address</a></td></tr>
 								<?php }?>
 								<tr><td>Primary Contact</td><td><?php echo $mobile_num; ?></td></tr>
 								<tr><td>Emargency Contact</td><td><?php echo $contact_no; ?></td></tr>
-              					<tr><td>Email</td><td><?php echo $email; ?></td></tr>
+              					<tr><td>Email</td><td>              					<?php if($email == "")               					    echo "<a class='btn btn-warning' href=add_student_email.php?student_id=".$student_id." role='button'>Add eMail</a>";              					    else               					        echo $email; ?>              					        </td></tr>
 		              </tbody>
 		         </table>
             </div>
@@ -216,7 +210,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
               <h3 class="panel-title">Admission Information</h3>
             </div>
             <div class="panel-body">
-              Panel content
+              <?php if(mysql_num_rows($result_adm) > 0) {?>              <table id="session_list" class="table table-striped">						<thead>						<tr><td>Course</td>							<td>Session</td>							<td>Status</td>							</tr>						</thead>						<tbody>						<?php 												while ($row = mysql_fetch_array($result_adm)) {				    			$course= $row['course'];				    			$session_name = $row['session'];				    			$passed = $row['passed'];				    		?>							<tr><td><?php echo $course; ?></td>							<td><?php echo $session_name; ?></td>							<td><?php if ($passed == 0) echo "Ongoing"; else echo "Completed" ;?></td>							</tr>							<?php } ?>		              </tbody>					</table>				<?php } else {?>				<p>No course information. <a class="btn btn-warning" href=<?php echo "student_course_linking.php?student_id=".$student_id?> role="button">Link Course</a></p>				<?php }?>
             </div>
           </div>
         </div><!-- /.col-sm-4 -->
@@ -226,7 +220,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
               <h3 class="panel-title">Educational Information</h3>
             </div>
             <div class="panel-body">
-              Panel content
+                          <?php if(mysql_num_rows($result_edu) > 0) {?>              <table id="session_list" class="table table-striped">						<thead>						<tr><td>Board</td>							<td>Level</td>							<td>Subject</td>							<td>Marks</td>							</tr>						</thead>						<tbody>						<?php 						while ($row = mysql_fetch_array($result_edu)) {						    $board_name= $row['board_name'];						    $level = $row['level'];						    $subject = $row['subject'];						    $marks = $row['marks'];				    		?>							<tr>								<td><?php echo $board_name; ?></td>								<td><?php echo $level; ?></td>								<td><?php if($subject) echo $subject; else echo "NA"; ?></td>								<td><?php if($marks) echo $marks; else echo "NA"; ?></td>															</tr>														<?php } ?>		              </tbody>					</table>				<?php } else {?>				<p>No info. <a class="btn btn-warning" href=<?php echo "student_edu_details.php?student_id=".$student_id?> role="button">Add Education</a></p>				<?php }?>
             </div>
           </div>
           <div class="panel panel-danger">

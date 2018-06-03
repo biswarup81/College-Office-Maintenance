@@ -30,13 +30,13 @@ include_once "./inc/header.php"; ?>
 			<div class="form-group">
 			<label for="fname" class="col-sm-2 control-label">First Name</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name" required>
+			<input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="fname" id="fname" placeholder="Enter First Name" required>
 			</div>
 			</div>
 			<div class="form-group">
 			<label for="lname" class="col-sm-2 control-label">Last Name</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last Name" required>
+			<input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="lname" id="lname" placeholder="Enter Last Name" required>
 			</div>
 			</div>
 			<div class="form-group">
@@ -69,9 +69,9 @@ include_once "./inc/header.php"; ?>
 			</div>
 			</div>
 			<div class="form-group">
-			<label for="cellnum" class="col-sm-2 control-label">Adhaar number</label>
+			<label for="cellnum" class="col-sm-2 control-label">Aadhaar number</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="aadhaar_no" id="aadhaar_no" placeholder="Enter Adhaar number">
+			<input type="text" class="form-control" name="aadhaar_no" id="aadhaar_no" placeholder="Enter Aadhaar number">
 			</div>
 			</div>
 			<div class="form-group">
@@ -85,7 +85,7 @@ include_once "./inc/header.php"; ?>
 			
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-			<input type="button" id="register_user" class="btn btn-default"  value="ADD" name="ADD" >
+			<input type="button" id="register_user" class="btn btn-primary"  value="ADD" name="ADD" >			<a class="btn btn-default" href="index.php" role="button">Go Back</a>
 			</div>
 			</div>
 			</form>

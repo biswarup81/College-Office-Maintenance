@@ -3,6 +3,7 @@
 $post = isset($_POST) ? $_POST: array();
 switch($post['action']) {
 	case 'save' :
+		
 		saveProfilePic();
 		saveProfilePicTmp();
 		break;
@@ -73,8 +74,6 @@ function saveProfilePicTmp() {
 		imagejpeg($nimg,$imagePath,90);
 	}
 	echo $imagePath.'?'.time();;
-	//echo "<img id='profile_picture' class='img-circle' src='".$imagePath."' />";
-	
 	exit(0);
 }
 /* Function to resize image */
@@ -130,6 +129,7 @@ function saveProfilePic(){
 	$actual_image_name = $txt.'.'.$ext;
 	
 	$sql = "insert into pg_student_photo(student_id, filename, created_by) values ('$student_id', '$actual_image_name','$loggedin_user')";
+	//echo $sql;
 	mysql_query($sql) or die(mysql_error());
 	$att_rec_id = mysql_insert_id();
 	$sql_upd = "Update pg_student_photo set active_flg = 0, last_upd_dt =now(), last_upd_by = ".$loggedin_user." where student_id = ".$student_id." and active_flg = 1 and row_id !=".$att_rec_id;

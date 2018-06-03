@@ -11,7 +11,7 @@ if(isset($_REQUEST['action'])){
         $uname=stripslashes(trim($_POST['user_name']));
         $pass=stripslashes($_POST['password']);
 
-        $sql = "select * from user where user_name = '$uname' and user_password = '".md5($pass)."'";
+        $sql = "select pg_session.row_id as active_session_id, user.* from user inner join pg_session on pg_session.active_flg=1  where user_name = '$uname' and user_password = '".md5($pass)."'";
         $r = mysql_query($sql) or die(mysql_error());
         $d = mysql_fetch_object($r) ;
 
@@ -20,12 +20,12 @@ if(isset($_REQUEST['action'])){
             $user_role = $d->role;
             $user_name = $d->user_name;
             $user_id = $d->user_id;
-            $user_full_name = $d->user_full_name;
+            $user_full_name = $d->user_full_name;            $active_session_id = $d->active_session_id;
             
            $_SESSION['user_type'] = $user_role;
            $_SESSION['logged_in_user_id'] = $user_id;
            $_SESSION['user_full_name'] = $user_full_name;
-           $_SESSION['sid'] = "6";
+           $_SESSION['sid'] = $active_session_id;
            
             
             if($user_role== ''){
@@ -35,7 +35,7 @@ if(isset($_REQUEST['action'])){
             } else if ($user_role== 'STUDENT'){
             	//get Student ID from old_student_id
             	
-            	$sql="select row_id from pg_student where old_student_id=".$user_name;
+            	$sql="select row_id from pg_student where old_student_id='".$user_name."'";
             	$r = mysql_query($sql) or die(mysql_error());
             	$d = mysql_fetch_object($r) ;
             	$student_id = $d->row_id;

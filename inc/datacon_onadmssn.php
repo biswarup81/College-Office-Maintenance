@@ -3,7 +3,7 @@ session_start();
 
 /* script to connect fo Mandir Database and pick up neccesary Information to display on screen */
 /* declare some relevant variables */
-$hostname = "online-admission.co.in:3306";
+$hostname = "online-admission.co.in";
 $username = "onlinead_kandra";
 $passwordsc = "#x9I@V1RBNhu";
 $dbName = "onlinead_kandra";

@@ -4,9 +4,9 @@ session_start();
 /* script to connect fo Mandir Database and pick up neccesary Information to display on screen */
       /* declare some relevant variables */
       $hostname = "localhost";
-      $username = "COL_OFF_KANDRA";
-      $passwordsc = "s3BxJSrr9nvUyFAR";
-      $dbName = "COL_OFF_KANDRA";
+      $username = "kandrark_admin";
+      $passwordsc = "welcome@123";
+      $dbName = "kandrark_col_off_kandra";
 
       $con = mysql_connect($hostname,$username,$passwordsc);
 		if (!$con)

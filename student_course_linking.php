@@ -66,12 +66,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 			<?php 
-			if ($rec_count>0)
-			    echo "<input type='button' disabled='disabled' id='link_student_course' class='btn btn-default' value='Course Already Linked' name='Link' >";
-			else
-			    
-			    echo "<input type='button' id='link_student_course' class='btn btn-default' value='Link Course' name='Link' >";
-			?> 
+			if ($rec_count>0)			{
+			    echo "<input type='button' disabled='disabled' id='link_student_course' class='btn btn-default' value='Course Already Linked' name='Link' >";			    echo "<a class='btn btn-primary' href='"."student_details.php?student_id=".$student_id."'>Back</a>";			}
+			else			    echo "<input type='button' id='link_student_course' class='btn btn-default' value='Link Course' name='Link' >";			?> 
 			
 			</div>
 			</div>

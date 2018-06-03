@@ -31,6 +31,34 @@ $(document).ready(function(){
 	         });
 	    }
   	});	  	
+  	
+  	$("#add_by_student_edu").click(function(){
+		  
+	    var url = "./ajax/add_student_edu.php"; // the script where you handle the form input.
+	    if(empty($("#board").val()) || empty($("#lvl").val()) || empty($("#inst").val()) || empty($("#indx").val()) || empty($("#roll").val()) ){
+	    	$("#edu_alert_2").html("Board, Level, Institution, Roll and Index is mandatory");
+	    	$("#edu_alert_2").show();
+	    	$("#create_edu_result").hide();
+	    	
+	    } else {
+	    	var url = "./ajax/add_student_edu_row.php"; // the script where you handle the form input.
+
+		    
+	    	//alert("Submitting the form");
+		    $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: $("#create_student_edu_form").serialize(), // serializes the form's elements.
+	           success: function(data)
+	           {
+	        	   $("#create_edu_result").show();
+		    		$("#create_edu_result").html(data);
+			        $("#edu_alert_2").hide();
+			        $('#create_student_edu_form').hide();
+	           }
+	         });
+	    }
+  	});
 
   	$("#add_by_student_mobile").click(function(){
 			  

@@ -19,7 +19,7 @@ include '../classes/admin_class.php';
 				if($rec_count > 0)
 				echo "$student_id is linked to $course for Session $esession successfully. <a class='btn btn-primary' href='".$url."'>Back</a>";
 				else 
-				    echo "<a color=red>Student $student_id linking FAILED to $course for Session $esession </a>";
+				    echo "<a color=red>Student $student_id linking FAILED to $course for Session $esession </a>".$sql1;
 				
 			//}
 		

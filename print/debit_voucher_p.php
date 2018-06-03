@@ -1,4 +1,4 @@
-<?php include_once "../inc/datacon.php";
+<?php include_once "../inc/datacon.php"; 
 include '../classes/admin_class.php'; ?>
 <!DOCTYPE html>
 <html lang="en">

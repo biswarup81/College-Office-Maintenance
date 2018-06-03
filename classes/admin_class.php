@@ -37,35 +37,7 @@ class admin{
         return $result;
     }
     
-    function calcBMI($weight, $height){
-        $bmi = floor(($weight / ($height * $height)) * 10000);
-        return $bmi;
-    }
-    function calcEGFR($sex, $cr, $age){
-        $k = 0;
-        if($sex == 'Male'){
-            $k = 1.210;
-        } else {
-            $k = 0.742 ;
-        }
-        $eGFR = floor($k * 186 * pow($cr, -1.154) * pow($age,-0.203));
-        return $eGFR;
-    }
-    function deriveClinicalImpressionFromEGFR($eGFR){
-        $cf = "";
-        if($eGFR >= 90 ){
-            $cf = "CKD-1";
-        } else if($eGFR < 90 && $eGFR >= 60 ){
-            $cf = "CKD-2";
-        }else if($eGFR < 60 && $eGFR >= 30 ){
-            $cf = "CKD-3";
-        }else if($eGFR < 30 && $eGFR >= 15 ){
-            $cf = "CKD-4";
-        }else if($eGFR < 15 ){
-            $cf = "CKD-5";
-        }
-        return $cf;
-    }
+    
     
     function insertUpdatePatientInvestigation($investigation_name, $type, $unit, $value, $patient_id, $visit_id,$chamber_name,$doc_name){
         $admin = new admin();
