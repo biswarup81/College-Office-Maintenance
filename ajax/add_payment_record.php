@@ -4,6 +4,7 @@ include '../classes/admin_class.php';
 
 $admin = new admin();
 
+
 // if(isset($_POST['CREATE_PATIENT_DATA'])){
 $student_id = $_POST['student_id'];
 $invoice_id = $_POST['invoice_id'];
