@@ -1,7 +1,6 @@
 /* THIS IS A CUSTOM JAVASCRIPT FILE */
 
 
-
 $(document).ready(function(){
 	
 	

@@ -1,7 +1,6 @@
 <?php
 include_once"../inc/datacon.php";
 include '../classes/admin_class.php';
-
 $admin = new admin();
 
 //if(isset($_POST['CREATE_PATIENT_DATA'])){

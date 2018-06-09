@@ -1,6 +1,7 @@
 <?php include_once "./inc/datacon.php";
 
 
+
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
 	if($_SESSION['user_type'] == "PRINCIPAL" || $_SESSION['user_type'] == "PROFESSOR" ) {
 ?>

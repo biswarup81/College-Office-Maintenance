@@ -1,7 +1,6 @@
 <?php
 include_once"../inc/datacon.php";
 include '../classes/admin_class.php';
-
 $admin = new admin();
 
 $page_id = $_POST['page_id'];

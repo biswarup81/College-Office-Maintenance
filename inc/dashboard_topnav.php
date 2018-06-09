@@ -31,7 +31,6 @@
             		$url = "student_details.php?student_id=".$student_id;
             		?> <li><a href="<?php echo $url;?>">My Profile</a></li>
             	<?php }?>
-            
             <?php } 
             	 }?>
            <li><a href="logout.php">Logout</a></li>
