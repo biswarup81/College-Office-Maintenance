@@ -24,17 +24,13 @@
           	if( $_SESSION['user_type'] == 'PRINCIPAL' || $_SESSION['user_type'] == 'PROFESSOR') {
           	?>
           	<li><a href="myprofile.php">My Profile</a></li>
-            <li><a href="accounts.php">Accounts</a></li>
-            <li><a href="student.php">Student Management</a></li>
-            <li><a href="master.php">Master Data</a></li>
-            <li><a href="yearend.php">Year End</a></li>
+          	<li><a href="dashboard.php">My Dashboard</a></li>
             <?php } else if( $_SESSION['user_type'] == 'STUDENT' ){ 
             	if ( isset($_SESSION['STUDENT_ID'])) {
             		$student_id = $_SESSION['STUDENT_ID'];
             		$url = "student_details.php?student_id=".$student_id;
             		?> <li><a href="<?php echo $url;?>">My Profile</a></li>
             	<?php }?>
-            
             <?php } 
             	 }?>
            <li><a href="logout.php">Logout</a></li>
