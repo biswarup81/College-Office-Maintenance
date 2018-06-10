@@ -15,15 +15,16 @@ $(document).ready(function(){
 		    } else {
 		    	var url = "./ajax/modify_website_content.php"; // the script where you handle the form input.
 
-			    var page_id = $("#page_id").val();
-			    var content 
+			    //var page_id = $("#page_id").val();
+			   // var content ;
 		    	//alert("Submitting the form");
 			    $.ajax({
 		           type: "POST",
 		           url: url,
 		           data: {
-		        	   page_id: $("#page_id").val(),
-		        	   content : $("#content").val()
+		        	   "page_id": $("#page_id").val(),
+		        	   "content" : $("#content").val(),
+		        	   "name" : $("#content_name").val()
 		           },
 		           success: function(data)
 		           {
@@ -54,7 +55,9 @@ $(document).ready(function(){
 		           success: function(data)
 		           {
 		        	   alert(data);
-		        	   $("#content").val(data)
+		        	   $("#view_content").text(data);
+		        	   $("#view_content").show();
+		        	   CKEDITOR.replace( 'content' );
 		           }
 		         });
 	  		}
