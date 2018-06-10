@@ -5,9 +5,9 @@ $(document).ready(function(){
 	
 	
 	  	$("#web_admin_add").click(function(){
-			  alert($("#content").val());
+			 alert($("#content").val());
 		    
-		    if(empty($("#content").val()) || ($("#page_id").val() == '0') ){
+		    if(empty($("#content").val()) || ($("#page_id").val() == '') ){
 		    	$("#search_alert_u").html("All Values are mandatory");
 		    	$("#search_alert_u").show();
 		    	$("#create_u_result").hide();
@@ -18,6 +18,7 @@ $(document).ready(function(){
 			    //var page_id = $("#page_id").val();
 			   // var content ;
 		    	//alert("Submitting the form");
+		    	
 			    $.ajax({
 		           type: "POST",
 		           url: url,
@@ -43,6 +44,8 @@ $(document).ready(function(){
 	  			var url = "./ajax/get_website_content.php"; // the script where you handle the form input.
 
 			    var page_id = $("#page_id").val();
+			    $("#hidden_row_id").val(page_id);
+			   // $("#wp_admin_form").submit();
 			    var content 
 		    	//alert("Submitting the form");
 			    $.ajax({
@@ -59,7 +62,7 @@ $(document).ready(function(){
 		        	   $("#view_content").show();
 		        	   CKEDITOR.replace( 'content' );
 		           }
-		         });
+		         }); 
 	  		}
 	  		
 	  	});
