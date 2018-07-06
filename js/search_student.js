@@ -67,7 +67,7 @@ $(document).ready(function() {
 		} 
 		else {
 			
-			var url = "http://localhost/OnlineAddmissionSystem/online-admission/admin/search_student_det.php"; // the script where you handle the form input.
+			var url = "http://localhost/OnlineAdmissionSystem/online-admission/admin/search_student_det.php"; // the script where you handle the form input.
 
 			alert("Submitting the form");
 			alert(url);
