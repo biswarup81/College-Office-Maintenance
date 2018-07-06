@@ -29,6 +29,34 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#search_appl").click(function() {
+
+		if (empty($("#appl_no").val()) ) {
+			$("#search_alert_2").html("Enter valid Application Number");
+			$("#search_alert_2").show();
+			$("#create_u_result").show();
+
+		} 
+		else {
+
+			var url = "http://localhost/OnlineAdmissionSystem/online-admission/admin/search_appl_record.php"; // the script where you handle the form input.
+
+			alert("Submitting the form. URL"+url);
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : $("#search_application_form").serialize(), // serializes the form's elements.
+				success : function(data) {
+					alert("Success");
+					$("#create_u_result").html(data);
+					$("#create_u_result").show();
+					$("#search_alert_2").hide();
+					
+				}
+			});
+		}
+	});
+	
 	$("#search_student_det").click(function() {
 
 		if (empty($("#student_id").val()) && empty($("#fst_name").val()) && empty($("#last_name").val()) ) {
@@ -38,10 +66,11 @@ $(document).ready(function() {
 
 		} 
 		else {
+			
+			var url = "http://localhost/OnlineAddmissionSystem/online-admission/admin/search_student_det.php"; // the script where you handle the form input.
 
-			var url = "./ajax/search_student_det.php"; // the script where you handle the form input.
-
-			//alert("Submitting the form");
+			alert("Submitting the form");
+			alert(url);
 			$.ajax({
 				type : "POST",
 				url : url,
