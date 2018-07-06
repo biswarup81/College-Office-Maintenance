@@ -19,10 +19,21 @@ include '../classes/admin_class.php';
 				last_name,gender, dob, aadhaar_no, category, ph_challenged)
 				values('$title','$fname','$mname', '$lname', '$gender', '$dob', '$aadhaar_no', '$category', '$phc' )";
 				mysql_query($sql1) or die(mysql_error());
-			
+				$uid = mysql_insert_id();
+				
+				$role = "STUDENT";
+				$password = "default123";
+				$uid = date("Y").".".$uid;
+				$full_name = $fname . $lname ;
+				
+				$insert_query = "insert into user(user_name,	user_full_name,	user_password,	role) values(
+				'$uid','$full_name','".md5($password)."','$role')";
+				echo $insert_query;
+				mysql_query($insert_query) or die(mysql_error());
+				
 
 				
-				echo "Dear  $fname $lname !! Registration is successful. <a class='btn btn-primary' href='./index_login.php'>Login Now !!</a>";
+				echo "Dear  $fname $lname !! Registration is successful with password: $password ";
 				
 			//}
 		
