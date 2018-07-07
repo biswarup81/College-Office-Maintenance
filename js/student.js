@@ -38,6 +38,33 @@ $(document).ready(function(){
 	        changeYear: true,
 	        yearRange: "-99:+1"
 	  	});
+	  	$("#adm_by_student").click(function(){
+			  
+		    var url = "./ajax/add_student_admission.php"; // the script where you handle the form input.
+		    if(empty($("#fname").val()) || empty($("#lname").val()) || empty($("#gender").val()) || empty($("#app_no").val()) || empty($("#course_lvl_cd").val()) || empty($("#course_cd").val()) || empty($("#theDOB").val()) ){
+		    	$("#search_alert_2").html("First Name, Last Name, Gender, DOB, Applicaion No and Course is mandatory");
+		    	$("#search_alert_2").show();
+		    	$("#create_r_result").hide();
+		    	
+		    } else {
+		    	var url = "./ajax/add_student_admission.php"; // the script where you handle the form input.
+
+			    
+		    	//alert("Submitting the form");
+			    $.ajax({
+		           type: "POST",
+		           url: url,
+		           data: $("#create_student_form").serialize(), // serializes the form's elements.
+		           success: function(data)
+		           {
+		        	   $("#create_u_result").show();
+			    		$("#create_u_result").html(data);
+				        $("#search_alert_u").hide();
+				        $('#create_student_form').hide();
+		           }
+		         });
+		    }
+	  	});
 });
 
 function empty( val ) {

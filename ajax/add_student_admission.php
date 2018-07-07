@@ -2,7 +2,6 @@
 include_once"../inc/datacon.php";
 include '../classes/admin_class.php';
 
-    $admin = new admin();
     $all_ok = true;
     $error_msg = "";
 
@@ -34,7 +33,7 @@ include '../classes/admin_class.php';
 		$course_cd = $_POST['course_cd'];
 		$session_course_id = 0;
 		
-		$role = "STUDENT";
+		$role = $_POST['role'];
 		$password = "default123";
 		$created_by = 1;
 		$full_name = $fname . " " . $lname ;
