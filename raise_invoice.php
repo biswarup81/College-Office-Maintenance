@@ -3,16 +3,16 @@
 include_once "./inc/datacon.php";
 include_once "./inc/header.php";
 
-$_REQUEST['page'] = '2';
-
-if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])) {
+if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_REQUEST['pp_id'])) {
+    include './inc/dashboard_topnav.php';
+    $page_id = $_REQUEST['pp_id'];
     ?>
-
-    <?php include './inc/dashboard_topnav.php'; ?>
 
 <div class="container-fluid">
 	<div class="row">
-        <?php include './inc/accounts_sidenav.php'; ?>
+        <div class="col-sm-3 col-md-2 sidebar" id="side_nav">
+        
+  		</div>
         <div
 			class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">Invoice Management</h1>
@@ -73,9 +73,17 @@ FROM pg_course a left outer join pg_fee_master b on a.row_id = b.course_id");
 <?php
 
 } else {
-    echo "You are not authorized to perform any operation. Close the browser and signin again";
+    echo  "You are not authorized to perform any operation. Close the browser and signin again";
 }
 include_once './inc/footer.php';?>
 <script src ="js/courselink.js"></script>
+ <script type="text/javascript">
+$(document).ready(function(){
+	//alert("loading");
+	//alert("./inc/master-sidenav.php?page_id=<?php echo $page_id?>");
+	$("#side_nav").addClass("col-sm-3 col-md-2 sidebar");
+	$("#side_nav").load("./inc/master_sidenav.php?pp_id=<?php echo $page_id?>");
+});
+</script>
 </body>
 </html>

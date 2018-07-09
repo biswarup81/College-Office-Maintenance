@@ -2,36 +2,32 @@
 
 include_once "./inc/datacon.php";
 include_once "./inc/header.php";
-
+?>
+ <div class="container">
+<?php
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['faculty_id'])) {
     ?>
-
+ 
     <?php include './inc/dashboard_topnav.php'; ?>
 
 <div class="container-fluid">
 	<div class="row">
-        <?php include './inc/faculty_sidenav.php'; ?>
-        <div
-			class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+       
+        
 <?php $faculty_id = $_GET['faculty_id']; ?>
-			<h1 class="page-header">Faculty Master</h1>
+			<h1 class="page-header">Faculty Details</h1>
 
 			<div class="row">
 				<div class="col-md-12">
-				<h2 class="sub-header">Faculty Detail</h2>
+				
 				<a class="btn btn-warning" href=<?php echo "add_faculty_addr.php?faculty_id=".$faculty_id?> role="button">+Add Address+</a>
 				<a class="btn btn-warning" href=<?php echo "add_faculty_mobile.php?faculty_id=".$faculty_id?> role="button">+Add Mobile+</a>
 				<a class="btn btn-warning" href=<?php echo "add_faculty_phone.php?faculty_id=".$faculty_id?> role="button">+Add Phone+</a>
 				<a class="btn btn-warning" href=<?php echo "add_faculty_email.php?faculty_id=".$faculty_id?> role="button">+Add eMail+</a>
-				<a class="btn btn-warning" href=<?php echo "faculty_course_linking.php?faculty_id=".$faculty_id?> role="button">+Link Course+</a>
-				<?php if( $_SESSION['user_type'] == 'PRINCIPAL' || $_SESSION['user_type'] == 'PROFESSOR') {
-          		?>
 				
-				<a class="btn btn-warning" href=<?php echo "faculty_scheme_apply.php?faculty_id=".$faculty_id?> role="button">+Scheme Application+</a>
-				<?php }?>
 					
 					<div class="page-header">
-        <h1>Faculty Details</h1>
+        
       </div>
       
       <?php
@@ -210,7 +206,6 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 
 
 		</div>
-	</div>
 </div>
 
 <?php

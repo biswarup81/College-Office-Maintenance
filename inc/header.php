@@ -27,7 +27,7 @@
 	
 	
     <!-- Custom styles for this template -->
-    <link href="navbar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
     
     <link href="css/carousel.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
@@ -38,3 +38,4 @@
 	<script src="ckeditor/ckeditor.js"></script>
     
   </head>
+  <body>

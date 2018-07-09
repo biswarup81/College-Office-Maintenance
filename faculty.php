@@ -4,14 +4,13 @@ $_REQUEST['page'] = '10';
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
     if($_SESSION['user_type'] == "PRINCIPAL") {
     ?>
-
+  <div class="container">
     <?php include './inc/dashboard_topnav.php'; ?>
 
     <div class="container-fluid">
       <div class="row">
-         <?php if ($_SESSION['user_type'] == "ACCOUNTS") { include './inc/accounts_sidenav.php'; }else{ include './inc/student_sidenav.php'; }?>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Faculty Management</h1>
+       
+          <h1 class="page-header">Faculty Management.</h1>
           <a class="btn btn-warning" href="add_faculty.php" role="button">Add Faculty</a>
           <div class="row">
           <div class="col-md-12">
@@ -65,10 +64,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id'])){
           
             
           
-        </div>
       </div>
     </div>
-
+</div>
    <?php } else { echo "You are not authorized to perform any operation. Close the browser and signin again";}
 } else { echo "Session is expired. Close the browser and signin again"; }
    include_once './inc/footer.php';?>

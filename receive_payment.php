@@ -8,7 +8,9 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 
     <div class="container-fluid">
       <div class="row">       			
-<?php include './inc/accounts_sidenav.php'; ?>
+        <div class="col-sm-3 col-md-2 sidebar" id="side_nav">
+        
+  		</div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 <?php 
 $invoice_id = $_GET['invoice_id'];

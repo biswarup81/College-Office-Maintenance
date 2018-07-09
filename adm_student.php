@@ -79,9 +79,9 @@ include './inc/dashboard_topnav.php'; ?>
 
 			
 			<div class="form-group">
-			<label for="theDOB" class="col-sm-2 control-label">Date of Birth</label>
+			<label for="tDOB" class="col-sm-2 control-label">Date of Birth</label>
 			<div class="col-sm-2">
-			<input type="date" class="form-control" name="theDOB" id="theDOB" placeholder="Enter Date of Birth">
+			<input type="date" class="form-control" name="tDOB" id="tDOB" placeholder="Enter Date of Birth">
 			</div>
 			</div>
 			
@@ -124,16 +124,16 @@ include './inc/dashboard_topnav.php'; ?>
 			</div>
 			</div>
 			<div class="form-group">
-			<label for="course_lvl_cd" class="col-sm-2 control-label">Course Level</label>
+			<label for="course_lvl_cd_txt" class="col-sm-2 control-label">Course Level</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="course_lvl_cd" id="course_lvl_cd_txt" readonly="readonly">
+			<input type="text" class="form-control" name="course_lvl_cd_txt" id="course_lvl_cd_txt" readonly="readonly">
 			</div>
 			</div>
 			
 			<div class="form-group">
-			<label for="course_cd" class="col-sm-2 control-label">Course</label>
+			<label for="course_cd_txt" class="col-sm-2 control-label">Course</label>
 			<div class="col-sm-6">
-			<input type="text" class="form-control" name="course_cd" id="course_cd_txt" readonly="readonly">
+			<input type="text" class="form-control" name="course_cd_txt" id="course_cd_txt" readonly="readonly">
 			</div>
 			</div>
 			
@@ -162,21 +162,21 @@ include './inc/dashboard_topnav.php'; ?>
         		url:'http://localhost/OnlineAdmissionSystem/online-admission/admin/adm_student_ajax.php?application_num=<?php echo $Appl_No?>', 
     	    	success: function(data) {
     	    		//data = '[{"id":"1","Application_No":"201806090001","password":"578631","Application_Fee":"","Demand_Draft_No":"","First_Name":"MANAS","Middle_Name":"","Last_Name":"PATRA","Gurdian_Name":"BISWESWAR PATRA","Gurdian_Mobile_No":"9874055573","Gurdian_Relation":"FATHER","Other_Relation":"","occu":"SERVICE","other_occu":"","desi":"","income":"<5000","Gender":"M","Date_Of_Birth":"2001-06-08","Category":"GEN","Physically_Challenged":"N","Religion":"HINDU","other_religion":"","Nationality":"INDIAN","Address":"RAJARHAT","ZIP_PIN":"700101","Address_1":"","pin2":"0","Address_2":"","Country":"INDIA","Mobile":"","Land_Phone_No":"-","email":"MPMANAS@GMAIL.COM","Total_Marks":"440","Bank_Payment_Verified":"0","admit":"0","course_id":"21","course_level_id":"11","session_id":"4","submit_date":"2018-06-09","flag":"3","state":"35","district":"641","CREATE_DATE":"2018-06-09 00:33:35","ADMISSION_ACCEPTANCE_DATE":"0000-00-00 00:00:00"}]';
-    	    		alert("success!!!");
+    	    		//alert("success!!!");
     	    		for (var i = 0; i < data.length; i++){
     	    		    var obj = data[i];
     	    		    $("#fname").val(obj['First_Name']);
     	    		    $("#mname").val(obj['Middle_Name']);
     	    		    $("#lname").val(obj['Last_Name']);
-    	    		    $("#theDOB").val(obj['Date_Of_Birth']);
+    	    		    $("#tDOB").val(obj['Date_Of_Birth']);
     	    		    $("#gender").val(obj['Gender']).attr("selected", "selected");
     	    		    $("#category").val(obj['Category']).attr("selected", "selected");
     	    		    $("#phc").val(obj['Physically_Challenged']).attr("selected", "selected");
     	    		    $("#app_no").val(obj['Application_No']);
     	    		    $("#course_lvl_cd_txt").val(obj['Course_Level_Name']);
     	    		    $("#course_cd_txt").val(obj['Course_Name']);
-    	    		    $("#course_lvl_cd").val(obj['course_level_id']);
-    	    		    $("#course_cd").val(obj['course_id']);
+    	    		    $("#course_lvl_cd").val(obj['course_lvl_cd']);
+    	    		    $("#course_cd").val(obj['course_cd']);
     	    		    //alert(obj['First_Name']);
     	    		    /* for (var key in obj){
     	    		        var attrName = key;
@@ -189,7 +189,7 @@ include './inc/dashboard_topnav.php'; ?>
     	        		url:'http://localhost/OnlineAdmissionSystem/online-admission/admin/get_student_marks_ajax.php?application_num=<?php echo $Appl_No?>', 
     	    	    	success: function(data1) {
     	    	    		//data = '[{"id":"1","Application_No":"201806090001","password":"578631","Application_Fee":"","Demand_Draft_No":"","First_Name":"MANAS","Middle_Name":"","Last_Name":"PATRA","Gurdian_Name":"BISWESWAR PATRA","Gurdian_Mobile_No":"9874055573","Gurdian_Relation":"FATHER","Other_Relation":"","occu":"SERVICE","other_occu":"","desi":"","income":"<5000","Gender":"M","Date_Of_Birth":"2001-06-08","Category":"GEN","Physically_Challenged":"N","Religion":"HINDU","other_religion":"","Nationality":"INDIAN","Address":"RAJARHAT","ZIP_PIN":"700101","Address_1":"","pin2":"0","Address_2":"","Country":"INDIA","Mobile":"","Land_Phone_No":"-","email":"MPMANAS@GMAIL.COM","Total_Marks":"440","Bank_Payment_Verified":"0","admit":"0","course_id":"21","course_level_id":"11","session_id":"4","submit_date":"2018-06-09","flag":"3","state":"35","district":"641","CREATE_DATE":"2018-06-09 00:33:35","ADMISSION_ACCEPTANCE_DATE":"0000-00-00 00:00:00"}]';
-    	    	    		alert("success!!!");
+    	    	    		//alert("success!!!");
     	    	    		for (var i = 0; i < data1.length; i++){
     	    	    		    var obj = data1[i];
     	    	    		    $("#board").val(obj['Board']);
@@ -222,4 +222,3 @@ include './inc/dashboard_topnav.php'; ?>
 <script src ="js/student.js"></script>
   </body>
 </html>
-			
