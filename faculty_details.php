@@ -3,6 +3,26 @@
 include_once "./inc/datacon.php";
 include_once "./inc/header.php";
 ?>
+<script>
+function inactivateFaculty(facultyId, user_type){
+	//alert("inactivate "+facultyId);
+	var url = "./ajax/deregister_faculty.php?faculty_id="+facultyId+"&user_type="+user_type;
+	//alert(url)
+	/*$.post("./ajax/deregister_faculty.php",
+  {
+    faculty_id: facultyId,
+    use_type: user_type
+  },
+  function(data, status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });*/
+	$.ajax({url: url, success: function(data){
+		 alert("Successfully deactivated");
+		 
+  }});
+
+}
+</script>
  <div class="container">
 <?php
 if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && isset($_GET['faculty_id'])) {
@@ -24,7 +44,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
 				<a class="btn btn-warning" href=<?php echo "add_faculty_mobile.php?faculty_id=".$faculty_id?> role="button">+Add Mobile+</a>
 				<a class="btn btn-warning" href=<?php echo "add_faculty_phone.php?faculty_id=".$faculty_id?> role="button">+Add Phone+</a>
 				<a class="btn btn-warning" href=<?php echo "add_faculty_email.php?faculty_id=".$faculty_id?> role="button">+Add eMail+</a>
-				
+				<a class="btn btn-danger" onclick="inactivateFaculty('<?php echo $faculty_id?>','<?php echo $_SESSION['user_type'] ?>')" role="button" id="delete_faculty">Delete Faculty</a>
 					
 					<div class="page-header">
         
@@ -111,36 +131,7 @@ if (isset($_SESSION['user_type']) && isset($_SESSION['logged_in_user_id']) && is
               <h3 class="panel-title">Payment Information (Last 5 transactions)</h3>
             </div>
             <div class="panel-body">
-            <?php if(mysql_num_rows($result_payment) > 0) {?>
-              <table id="session_list" class="table table-striped">
-						<thead>
-						<tr><td>Invoice</td>
-							<td>Amount</td>
-							<td>Date</td>
-							<td>Mode</td>
-							</tr>
-						</thead>
-						<tbody>
-						<?php 
-						
-						while ($row = mysql_fetch_array($result_payment)) {
-				    			$invoice_id= $row['invoice_id'];
-				    			$amount = $row['amount'];
-				    			$payment_dt = strtotime($row['payment_dt']);
-				    			$pay_mode = $row['pay_mode'];
-				    			$bank_name = $row['bank_name'];
-				    			$cheque_number = $row['cheque_number'];
-				    		}?>
-							<tr><td><?php echo $invoice_id; ?></td>
-							<td><?php echo "Rs.".$amount; ?></td>
-							<td><?php if ($payment_dt != "") echo date("d / m / Y", $payment_dt) ;?></td>
-							<td><?php echo $pay_mode; ?></td>
-							</tr>
-		              </tbody>
-					</table>
-				<?php } else {?>
-				<p>No Transaction so far</p>
-				<?php }?>
+            Not relevant..
             </div>
           </div>
          
